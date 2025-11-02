@@ -1,0 +1,183 @@
+/* --- Variáveis Exclusivas (herdadas do global-playbook.css) --- */
+:root {
+  --copy-background: #2c2c2c;
+  --copy-border-color: #495057;
+  --copy-btn-color: #f0ad4e;
+  --success-color: #28a745;
+  --ramal-color: #ffc107;
+}
+
+/* --- Conteúdo Principal --- */
+.main-content {
+  /* Mantido o max-width para ser mais estreito */
+  max-width: none;
+}
+
+.section-description {
+  color: var(--text-color-secondary);
+  margin-bottom: 1rem;
+}
+
+/* --- Ramais Customizados --- */
+.ramal-section-title {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--copy-border-color);
+}
+
+.ramal-grid {
+    display: grid;
+    /* Tenta 5 colunas, mas flexível para telas menores */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.ramal-card {
+    background-color: var(--card-background);
+    padding: 1rem 0.5rem;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100px;
+}
+
+.ramal-card:hover {
+    background-color: #3a3a3a;
+    border-color: var(--primary-color);
+}
+
+.ramal-card-role {
+    font-size: 0.8rem;
+    color: var(--text-color-secondary);
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+    min-height: 30px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ramal-card-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-color-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    min-height: 30px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ramal-card-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ramal-color);
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #495057;
+}
+
+/* Estilo para Ramais Copiados */
+.ramal-card.copied {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+.ramal-card.copied .ramal-card-role, 
+.ramal-card.copied .ramal-card-name, 
+.ramal-card.copied .ramal-card-number {
+    color: white;
+}
+.ramal-card.copied .ramal-card-number {
+    border-top-color: rgba(255, 255, 255, 0.5);
+}
+
+
+/* --- Abas de Navegação (Aba-menu) --- */
+.tab-navigation {
+    display: grid; /* MUDADO PARA GRID */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Flexível */
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tab-link {
+    text-align: center;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-color-secondary);
+    background-color: var(--card-background); /* Fundo de card */
+    font-size: 0.95rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    font-weight: 600;
+    border: 1px solid var(--border-color-subtle);
+    display: flex; /* Para alinhar emoji */
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* Espaço entre emoji e texto */
+}
+
+.tab-link:hover {
+    background-color: #3a3a3a;
+    color: var(--text-color-primary);
+    border-color: var(--primary-color);
+}
+
+.tab-link.active {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    font-weight: 700;
+    border-color: var(--primary-color);
+}
+
+/* --- Barra de Busca --- */
+.search-bar-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+/* Removido o ícone de lupa do CSS, pois ele vinha do Font Awesome */
+#ramal-search {
+  width: 100%;
+  padding: 0.8rem 1rem; /* Padding ajustado (sem ícone) */
+  border-radius: 6px;
+  border: 1px solid var(--copy-border-color);
+  background-color: var(--card-background);
+  color: var(--text-color-primary);
+  font-size: 1rem;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+  .tab-navigation {
+      grid-template-columns: 1fr; /* Coluna única no mobile */
+      gap: 0.5rem;
+  }
+  .ramal-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.5rem;
+  }
+  .ramal-card {
+      padding: 0.8rem 0.3rem;
+      min-height: 80px;
+  }
+  .ramal-card-name {
+      font-size: 0.85rem;
+  }
+  .ramal-card-number {
+      font-size: 1.3rem;
+  }
+}

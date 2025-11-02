@@ -1,0 +1,254 @@
+/* --- global-playbook.css (Ajuste Final de Alinhamento) --- */
+
+/* Importação de Fonte: 'Inter' */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+/* Importação Font Awesome */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css");
+
+
+/* --- Variáveis Globais (ATUALIZADAS para o tema UNIGRAN - Amarelo/Escuro) --- */
+:root {
+    --primary-color: #f0ad4e; /* Amarelo UNIGRAN - Novo Global */
+    --background-color: #1a1a1a; /* Fundo principal escuro - Novo Global */
+    --card-background: #2c2c2c; /* Fundo dos cartões - Novo Global */
+    --text-color-primary: #ffffff;
+    --text-color-secondary: #adb5bd;
+    --border-color-subtle: #495057; /* Usando cor de borda comum */
+    --font-family: 'Inter', sans-serif;
+    --color-success: #28a745; 
+    
+    /* Variáveis para o Header Fixo */
+    --header-bg: rgba(15, 15, 15, 0.98); 
+    /* Variáveis Legadas/Restauradas para o gradiente da HOME */
+    --color-primary-blue: #164e9b; 
+    --color-primary-gold: #faba2b; 
+}
+
+/* --- Reset e Estilos Base --- */
+* {
+    box-sizing: border-box;
+    transition: all 0.3s ease; 
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--background-color);
+    color: var(--text-color-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Background animado (Mantido) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(22, 78, 155, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(250, 186, 43, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(22, 78, 155, 0.2) 0%, transparent 50%);
+    z-index: -1;
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+
+/* --- 1. HEADER FIXO DE LINHA ÚNICA --- (Mantido, mas ajustado para o novo link da home) */
+.header-tabs {
+    background: var(--header-bg);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color-subtle);
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 70px;
+    overflow: hidden; 
+}
+
+/* Container Principal (Única Linha: Logo, Navegação, Busca) */
+.tabs-container {
+    display: flex;
+    align-items: center;
+    height: 70px; 
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px 0 0; 
+    position: relative;
+    z-index: 10;
+}
+
+/* TÍTULO DO SISTEMA (REMOVIDO NO HTML) */
+.system-title {
+    display: none; 
+}
+
+/* --- NAVEGAÇÃO GRID (Linha Única) --- */
+.main-tabs-single-line {
+    display: flex;
+    gap: 8px; 
+    flex: 1; 
+    overflow-x: hidden; 
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-left: 24px;
+}
+
+.main-tab-item {
+    text-decoration: none;
+    background: var(--card-background);
+    border: 1px solid var(--border-color-subtle);
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    flex-shrink: 0; 
+    min-width: 90px; 
+}
+.main-tab-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary-color);
+}
+.main-tab-item.active {
+    /* Gradiente baseado nas cores UNIGRAN para destaque */
+    background: linear-gradient(135deg, rgba(240, 173, 78, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+    border-color: var(--primary-color);
+}
+
+
+.main-tab-item .icon-single-line {
+    font-size: 16px; 
+    margin-bottom: 4px;
+}
+
+.main-tab-item .title {
+    font-size: 9px; 
+    font-weight: 700;
+    color: var(--text-color-primary);
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+/* ESTILOS DE COR (Fiel ao print do grid) */
+/* Removidos os estilos de cor hardcoded para alinhar com o tema UNIGRAN */
+
+/* --- Barra de Pesquisa (Último item à direita) --- */
+.search-header {
+    margin-left: 20px;
+    position: relative;
+    flex-shrink: 0;
+    width: 200px; 
+}
+.search-header .search-box-container {
+    position: relative;
+}
+.search-header .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: var(--text-color-secondary);
+    pointer-events: none;
+}
+.search-header .search-box {
+    width: 100%;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color-subtle);
+    border-radius: 8px;
+    color: var(--text-color-primary);
+    font-size: 14px;
+    outline: none;
+    padding-left: 35px;
+}
+
+
+/* --- 2. LAYOUT GERAL E CONTEÚDO (Para uso em todas as páginas) --- */
+
+.main-content {
+    padding-top: 70px; 
+    flex: 1;
+    max-width: 1200px; /* Alinhado com o max-width da maioria das páginas */
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 48px;
+}
+
+/* Novo estilo para o .intro/títulos das páginas de conteúdo */
+.intro {
+    text-align: left; /* Alinhado à esquerda na maioria dos layouts */
+    margin-bottom: 3rem;
+    padding-top: 2rem; 
+}
+
+.intro h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.intro h1 i {
+    margin-right: 0.5rem;
+}
+
+.intro p {
+    color: var(--text-color-secondary);
+    font-size: 1.1rem;
+}
+
+/* Estilos de Seção Comuns */
+.crm-section {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.section-title i {
+    margin-right: 0.5rem;
+}
+
+/* Home Page Specific Styles (Mantidos para não quebrar a home) */
+.welcome-section {
+    text-align: center;
+    padding-top: 150px; 
+    padding-bottom: 150px;
+}
+.welcome-section h1 {
+    font-size: 72px; 
+    font-weight: 900; 
+    margin: 0 0 24px 0;
+    /* CORREÇÃO APLICADA AQUI: Retorna o gradiente Azul/Ouro */
+    background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-gold) 50%, var(--color-primary-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.welcome-section p {
+    font-size: 22px;
+    color: var(--text-color-primary);
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+}

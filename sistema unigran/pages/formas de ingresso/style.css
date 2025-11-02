@@ -1,0 +1,265 @@
+/* --- Variáveis Exclusivas da Forma de Ingresso --- */
+:root {
+  --copy-border-color: #495057;
+  --step-color: #f0ad4e; /* Cor do número do passo */
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  /* Cores pedidas */
+  --color-green: #28a745;
+  --color-purple: #6f42c1;
+  --color-brown: #8B4513;
+  --color-blue: #007bff;
+  --color-orange: #fd7e14;
+}
+
+/* --- Conteúdo Principal --- */
+.main-content {
+  max-width: none;
+}
+
+.intro {
+  text-align: left;
+}
+
+/* --- Estilo de Grid de Cards (Para as formas de ingresso) --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.ingresso-card {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-color-primary);
+    /* A borda colorida vem do JS */
+    border: 1px solid var(--border-color-subtle);
+    border-top: 5px solid var(--border-color-subtle); /* Borda superior padrão */
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px; 
+    box-shadow: var(--card-shadow);
+}
+
+.ingresso-card:hover {
+    transform: translateY(-5px);
+    background-color: #3a3a3a;
+    border-color: var(--primary-color);
+    border-top-color: var(--primary-color);
+}
+
+/* Cores dos Cards */
+.ingresso-card.color-green { border-top-color: var(--color-green); }
+.ingresso-card.color-purple { border-top-color: var(--color-purple); }
+.ingresso-card.color-brown { border-top-color: var(--color-brown); }
+.ingresso-card.color-blue { border-top-color: var(--color-blue); }
+.ingresso-card.color-orange { border-top-color: var(--color-orange); }
+
+
+.card-icon {
+    font-size: 3rem; /* Tamanho do emoji */
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.ingresso-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: var(--text-color-primary);
+}
+
+.ingresso-card p {
+    color: var(--text-color-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.card-description {
+    color: var(--text-color-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    flex-grow: 1; 
+}
+
+.card-link {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 1rem;
+}
+
+/* --- Detalhes da Modalidade (Conteúdo Aberto) --- */
+.modalidade-details {
+    padding-top: 2rem;
+    border-top: 2px solid var(--primary-color);
+    margin-top: 2rem;
+    display: none; 
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.modalidade-details.active {
+    display: block;
+    opacity: 1;
+}
+
+.modalidade-details h2 {
+    font-size: 2rem;
+    color: var(--text-color-primary);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Espaço entre o emoji e o título */
+}
+
+.modalidade-details p.subtitle {
+    color: var(--text-color-secondary); /* Subtítulo cinza */
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+/* --- Seções de Critérios e Passos (Cards internos) --- */
+.criteria-block {
+    background-color: #212529; 
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 5px solid var(--primary-color); /* Borda amarela */
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+}
+.criteria-block h3 {
+    font-size: 1.2rem;
+    color: var(--text-color-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.criteria-block ul {
+    list-style: none;
+    padding: 0;
+}
+.criteria-block li {
+    display: flex;
+    align-items: flex-start;
+    color: var(--text-color-secondary);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+/* Bloco de Observações (reutiliza o estilo) */
+.observacoes-block {
+    background-color: #212529;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 5px solid var(--color-blue); /* Borda azul */
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+    color: var(--text-color-secondary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+.observacoes-block h3 {
+    font-size: 1.2rem;
+    color: var(--text-color-primary);
+    margin-bottom: 1rem;
+}
+.observacoes-block p {
+    margin: 0;
+}
+
+/* Passos (Steps) - (*** ESTA SEÇÃO FOI MODIFICADA ***) */
+.step-item {
+    background-color: #212529;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: var(--card-shadow);
+    /* display: flex e align-items: flex-start REMOVIDOS */
+}
+
+/* .step-number FOI REMOVIDO */
+
+.step-content h3 {
+    /* Este estilo agora se aplica ao "➤ Área Afim" */
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.step-content p {
+    /* Este p agora contém todo o texto (ex: "1️⃣ ...") */
+    color: var(--text-color-secondary);
+    font-size: 1rem; /* Aumentei um pouco a fonte */
+    margin-bottom: 0.5rem;
+    padding-left: 0;
+    line-height: 1.7; /* Mais espaço entre as linhas */
+}
+
+.step-content p strong {
+    color: var(--text-color-primary);
+}
+
+
+/* --- Botão Voltar (Back Button) --- */
+.back-button-container {
+    margin: 2rem 0;
+    display: none; 
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.back-button-container.active {
+    display: block;
+    opacity: 1;
+}
+
+.back-button {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem; /* Espaço para o emoji */
+    transition: background-color 0.2s;
+}
+
+.back-button:hover {
+    background-color: #d99a45;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+    .card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+  .intro h1 {
+      font-size: 2rem;
+  }
+  .modalidade-details h2 {
+      font-size: 1.5rem;
+  }
+  /* .step-number foi removido */
+}

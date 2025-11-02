@@ -1,0 +1,179 @@
+/* --- Variáveis Exclusivas do Diferenciais --- */
+:root {
+  --tag-bg-primary: #f0ad4e33; /* Amarelo com transparência */
+  --tag-text-primary: var(--primary-color);
+  --tag-bg-secundary: #007bff33; /* Azul com transparência */
+  --tag-text-secundary: #007bff;
+  --tag-bg-mec: #28a74533; /* Verde com transparência */
+  --tag-text-mec: #28a745;
+  --copy-border-color: #495057;
+}
+
+/* --- Conteúdo Principal --- */
+.main-content {
+  max-width: none;
+}
+
+.intro {
+  text-align: left; /* Alinhado à esquerda */
+}
+
+/* --- Barra de Busca (Reutilizada) --- */
+.search-bar-container {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+#course-search {
+  width: 100%;
+  padding: 0.8rem 1rem; /* Padding ajustado (sem ícone) */
+  border-radius: 6px;
+  border: 1px solid var(--border-color-subtle);
+  background-color: var(--card-background);
+  color: var(--text-color-primary);
+  font-size: 1rem;
+}
+
+/* --- Grid e Cards de Curso --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); 
+    gap: 1.5rem;
+}
+
+.curso-card {
+    /* --- MUDANÇA MÁGICA AQUI --- */
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo com opacidade */
+    /* --- FIM DA MUDANÇA --- */
+    
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color-subtle);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.curso-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #343434;
+}
+
+/* Estilo do Emoji */
+.curso-icon {
+    font-size: 2.5rem; /* Tamanho do emoji */
+    margin-right: 1rem;
+    min-width: 30px;
+    line-height: 1; /* Alinhamento do emoji */
+}
+
+.curso-info {
+    flex-grow: 1;
+}
+
+.curso-info h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.curso-info p {
+    font-size: 0.85rem;
+    color: var(--text-color-secondary);
+    margin: 0;
+}
+
+/* --- Diferenciais (Pills/Tags) --- */
+.diferenciais-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tag-item {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Estilos de Tag Específicos */
+.tag-item.primary {
+    background-color: var(--tag-bg-primary);
+    color: var(--tag-text-primary);
+}
+.tag-item.secundary {
+    background-color: var(--tag-bg-secundary);
+    color: var(--tag-text-secundary);
+}
+.tag-item.mec {
+    background-color: var(--tag-bg-mec);
+    color: var(--tag-text-mec);
+}
+
+
+/* --- Lista Completa de Diferenciais (com emoji) --- */
+.diferenciais-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px dashed #343434;
+    padding-top: 1rem;
+}
+
+.diferenciais-list li {
+    display: flex; /* Alinha o emoji com o texto */
+    align-items: flex-start;
+    color: var(--text-color-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+}
+
+/* Estilo do emoji da lista (1️⃣, 2️⃣...) */
+.diferenciais-list li span.list-emoji {
+    margin-right: 0.8rem;
+    font-size: 1rem;
+    line-height: 1.3;
+    flex-shrink: 0; /* Impede o emoji de encolher */
+}
+
+/* Estilo do texto do diferencial */
+.diferenciais-list li span.list-text {
+    flex-grow: 1;
+}
+
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+    .card-grid {
+        /* Muda para 1 coluna em telas menores */
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+  .intro h1 {
+      font-size: 2rem;
+  }
+  .curso-header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+  .course-header h3 {
+      font-size: 1.3rem;
+  }
+  .curso-icon {
+      margin-bottom: 0.5rem;
+  }
+}

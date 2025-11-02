@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>  
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNIGRAN - Investimentos</title>
+    
+    <link rel="stylesheet" href="../global-playbook.css"> <link rel="stylesheet" href="./style.css" />
+    
+    </head>
+  <body>
+    
+    <div class="header-tabs" id="headerTabs">
+        <div class="tabs-container">
+            <nav class="main-tabs-single-line" id="mainTabsSingleLine">
+                <a href="../home/index.html" class="main-tab-item">
+                    🏠 <span class="title">INÍCIO</span>
+                </a>
+                <a href="../checklists-diarios/index.html" class="main-tab-item">
+                    ✅ <span class="title">CHECKLIST DIÁRIO</span>
+                </a>
+                <a href="../crm/index.html" class="main-tab-item">
+                    📊 <span class="title">CRM</span>
+                </a>
+                <a href="../investimentos/index.html" class="main-tab-item active">
+                    💰 <span class="title">INVESTIMENTOS</span>
+                </a>
+                <a href="../formas de ingresso/index.html" class="main-tab-item">
+                    🎯 <span class="title">FORMAS DE INGRESSO</span>
+                </a>
+                <a href="../diferenciais dos cursos/index.html" class="main-tab-item">
+                    🚀 <span class="title">DIFERENCIAIS DOS CURSOS</span>
+                </a>
+                <a href="../informações extras/index.html" class="main-tab-item">
+                    💡 <span class="title">INFORMAÇÕES EXTRAS</span>
+                </a>
+                <a href="../unigran academy/index.html" class="main-tab-item">
+                    🎓 <span class="title">UNIGRAN ACADEMY</span>
+                </a>
+                <a href="../pergunte para a uny/index.html" class="main-tab-item">
+                    🤖 <span class="title">PERGUNTE PARA A UNI</span>
+                </a>
+            </nav>
+            <div class="search-header">
+                <div class="search-box-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-box" placeholder="Pesquisar..." id="global-search-compact" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="main-content">
+      <section class="intro">
+        <h1>💰 Central de Investimentos</h1>
+        <p>Valores dos cursos e informações sobre descontos disponíveis.</p>
+      </section>
+
+      <section class="crm-section">
+        <h2 class="section-title">
+          🎯 Descontos Especiais Disponíveis
+        </h2>
+        <p class="section-description">
+          Descontos que podem ser aplicados imediatamente durante o atendimento:
+        </p>
+
+        <div class="discount-container">
+          <div class="discount-item">
+            <h3>🎓 Aluno Egresso UNIGRAN</h3>
+            <ul>
+              <li>
+                <span>💯</span> Desconto:
+                <b>50% na matrícula e mensalidade</b>
+              </li>
+              <li>
+                <span>✅</span> Válido para: Todos os
+                cursos, <b>exceto Gastronomia e Odontologia</b>
+              </li>
+              <li>
+                <span>🏦</span> Inclui: Alunos da UNIGRAN
+                Presencial e Polos 1 e 3 de Dourados
+              </li>
+            </ul>
+          </div>
+
+          <div class="discount-item">
+            <h3>🏛️ Aluno Indígena</h3>
+            <ul>
+              <li>
+                <span>💯</span> Desconto:
+                <b>50% na matrícula e mensalidade</b>
+              </li>
+              <li>
+                <span>✅</span> Válido para: Todos os
+                cursos, <b>exceto Odontologia</b>
+              </li>
+            </ul>
+            <div class="important-note">
+              <p>
+                ⚠️ Desconto de Gastronomia é de 40% da matrícula até as
+                mensalidades.
+              </p>
+              <p>
+                ⚠️ Matrícula realizada apenas na Secretaria. Comercial faz
+                acompanhamento no CRM.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="crm-section">
+        <h2 class="section-title">
+          📊 Planilha de Investimentos por Curso
+        </h2>
+        <p class="section-description">
+          Valores atualizados dos cursos oferecidos pela UNIGRAN Presencial.
+        </p>
+
+        <div class="search-bar-container">
+          <input
+            type="text"
+            id="course-search"
+            placeholder="Buscar curso (ex: Direito, Medicina...)"
+          />
+        </div>
+
+        <div class="table-responsive">
+          <table class="investment-table">
+            <thead>
+              <tr>
+                <th>CURSO</th>
+                <th>DURAÇÃO (semestres)</th>
+                <th>FORMAÇÃO</th>
+                <th>INVESTIMENTO</th>
+                <th>DESCONTO DE PONTUALIDADE (até dia 10)</th>
+                <th>DESCONTO ESPECIAL</th>
+              </tr>
+            </thead>
+            <tbody id="course-table-body"></tbody>
+          </table>
+        </div>
+
+        
+      </section>
+
+      <section class="crm-section">
+        <h2 class="section-title">
+          ⚠️ Informações Importantes
+        </h2>
+        <div class="info-block">
+          <ul>
+            <li>
+              <span>✅</span> Os valores podem sofrer
+              alterações no início de cada ano em razão do índice IPCA (Entre 5%
+              e 8%)
+            </li>
+            <li>
+              <span>✅</span> Desconto de pontualidade
+              válido para pagamentos até o dia 10 de cada mês
+            </li>
+            <li>
+              <span>✅</span> Consulte sempre a planilha
+              atualizada antes de informar valores ao candidato
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

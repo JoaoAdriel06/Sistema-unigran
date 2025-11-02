@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uni - Consultora Artificial UNIGRAN</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="../global-playbook.css">
+</head>
+<body>
+<div class="header-tabs" id="headerTabs">
+    <div class="tabs-container">
+
+        <div class="system-title" style="display: none;"></div>
+
+        <nav class="main-tabs-single-line" id="mainTabsSingleLine">
+            <a href="../home/index.html" class="main-tab-item">
+                🏠
+                <span class="title">INÍCIO</span>
+            </a>
+            <a href="../checklists-diarios/index.html" class="main-tab-item">
+                ✅
+                <span class="title">CHECKLIST DIÁRIO</span>
+            </a>
+            <a href="../crm/index.html" class="main-tab-item">
+                📊
+                <span class="title">CRM</span>
+            </a>
+            <a href="../investimentos/index.html" class="main-tab-item">
+                💰
+                <span class="title">INVESTIMENTOS</span>
+            </a>
+            <a href="../formas de ingresso/index.html" class="main-tab-item">
+                🎯
+                <span class="title">FORMAS DE INGRESSO</span>
+            </a>
+            <a href="../diferenciais dos cursos/index.html" class="main-tab-item">
+                🚀
+                <span class="title">DIFERENCIAIS DOS CURSOS</span>
+            </a>
+            <a href="../informações extras/index.html" class="main-tab-item">
+                💡
+                <span class="title">INFORMAÇÕES EXTRAS</span>
+            </a>
+            <a href="../Unigran Academy/index.html" class="main-tab-item">
+                🎓
+                <span class="title">UNIGRAN ACADEMY</span>
+            </a>
+            <a href="../pergunte para a uny/index.html" class="main-tab-item active">
+                🤖
+                <span class="title">PERGUNTE PARA A UNI</span>
+            </a>
+        </nav>
+
+        <div class="search-header">
+            <div class="search-box-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-box" placeholder="Pesquisar..." id="global-search-compact" />
+            </div>
+        </div>
+    </div>
+</div>
+    <main class="chat-main main-content">
+        
+        <div class="chat-body-full" id="chat-body-full">
+            </div>
+
+        <div class="chat-footer-wrapper">
+            <footer class="chat-footer-full">
+                <div class="input-container-full">
+                    
+                    <button class="action-button" id="uny-file-clip-button" aria-label="Anexar arquivo">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <input type="file" id="uny-file-input" accept="image/*, application/pdf, .txt, .doc, .docx" />
+                    
+                    <input type="text" id="uny-chat-input" placeholder="Peça à Uni..." />
+                    
+                    <button class="action-button" id="uny-voice-button" aria-label="Falar">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    
+                    <button id="uny-send-button" class="send-button">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </footer>
+            
+            <button id="new-chat-button" class="reset-chat-button">
+                Resetar Conversa
+            </button>
+
+            </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

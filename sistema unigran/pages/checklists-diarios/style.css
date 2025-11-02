@@ -1,0 +1,275 @@
+/* Importação de Fonte (Inter, do global-playbook.css) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* Importação Font Awesome (do global-playbook.css) */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css");
+
+
+/* --- Variáveis Globais (Copiadas do global-playbook.css para esta página) --- */
+:root {
+    --primary-color: #f0ad4e; /* Amarelo UNIGRAN */
+    --background-color: #1a1a1a; /* Fundo principal escuro */
+    --card-background: #2c2c2c; /* Fundo dos cartões/blocos */
+    --text-color-primary: #ffffff;
+    --text-color-secondary: #adb5bd;
+    --border-color-subtle: #495057;
+    --font-family: 'Inter', sans-serif;
+    --color-success: #28a745; 
+    
+    /* Cores Específicas do Checklist (baseado nos prints) */
+    --checklist-item-bg: #212529; /* Fundo mais escuro para o item */
+    --checklist-border: #3a3a3a; /* Borda sutil do item */
+    --checklist-h3-color: #879FFF; /* Azul/Roxo pálido para H3 (estimado) */
+}
+
+/* --- Reset e Estilos Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--background-color);
+    color: var(--text-color-primary);
+    line-height: 1.6;
+    padding: 2rem 1rem; /* Espaçamento da página */
+}
+
+/* O .container agora é apenas um wrapper de largura */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    /* REMOVIDO: background-color, padding, border-radius, box-shadow */
+}
+
+/* --- Estilo de BLOCOS (baseado nos prints) --- */
+/* Cada seção principal é um bloco/card */
+.page-header,
+.checklist-group,
+.progress-section,
+.quote {
+    background-color: var(--card-background); /* #2c2c2c */
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color-subtle);
+}
+
+/* --- Cabeçalho (Bloco 1) --- */
+.page-header {
+    text-align: left; /* Alinhado à esquerda */
+    border-bottom: none;
+    padding-bottom: 2rem;
+}
+
+h1 {
+    color: var(--text-color-primary); /* Texto branco */
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--text-color-secondary);
+    font-style: italic;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+/* --- Seção de Checklist (Bloco 2) --- */
+.checklist-section {
+    /* Esta seção é um container, não um bloco visual */
+    margin-bottom: 1.5rem;
+}
+
+.checklist-section h2 {
+    font-size: 1.5rem;
+    color: var(--text-color-primary); /* Branco, conforme print */
+    margin-bottom: 1.5rem; /* Espaço antes do primeiro grupo */
+}
+
+/* Título de cada grupo (ex: "1. Estrutura Digital") */
+.checklist-group h3 {
+    font-size: 1.2rem;
+    color: var(--checklist-h3-color); /* Azul/Roxo do print */
+    margin-bottom: 0.5rem;
+}
+
+.group-description {
+    color: var(--text-color-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.tip {
+    color: var(--text-color-secondary);
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    background-color: var(--checklist-item-bg); /* Fundo sutil */
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+}
+
+/* --- Estilização da Lista (ITENS) --- */
+/* O print mostra cada item como uma "barra" */
+.checklist {
+    list-style: none;
+    padding-left: 0;
+}
+
+.checklist li {
+    display: flex;
+    align-items: center;
+    background-color: var(--checklist-item-bg); /* #212529 */
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.5rem; /* Espaço entre os itens */
+    border: 1px solid var(--checklist-border); /* Borda sutil */
+    transition: background-color 0.2s ease;
+}
+
+.checklist li:hover {
+    background-color: #2a2e33; /* Leve hover */
+}
+
+.checklist label {
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    padding-left: 0;
+    flex-grow: 1; 
+    display: flex; 
+    align-items: center;
+}
+
+/* Esconde o checkbox padrão */
+.checklist input[type="checkbox"] {
+    display: none; 
+}
+
+/* Cria o checkbox customizado (do print) */
+.checklist label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-color-secondary);
+    border-radius: 4px;
+    margin-right: 12px;
+    vertical-align: middle;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    flex-shrink: 0; /* Impede que o checkbox encolha */
+}
+
+/* Estilo quando marcado (Baseado no CSS original) */
+.checklist input[type="checkbox"]:checked + label::before {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+    content: '\2713'; /* Checkmark */
+    color: white;
+    text-align: center;
+    line-height: 18px; /* Ajuste para alinhar o check */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Estilo do texto quando marcado (Baseado no CSS original) */
+.checklist input[type="checkbox"]:checked + label {
+    color: var(--text-color-secondary);
+    text-decoration: line-through;
+}
+
+/* --- Citação (Bloco 3) --- */
+.quote {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-color-secondary);
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-left: 4px solid var(--primary-color); /* Destaque amarelo */
+    padding: 1.5rem;
+    background-color: var(--checklist-item-bg); /* Fundo mais escuro */
+    border-radius: 8px;
+    /* Ajuste para o print, que mostra a citação num bloco próprio */
+    margin-top: 1.5rem; 
+}
+
+/* --- Seção de Progresso (Bloco 4 - Fiel ao print) --- */
+.progress-section {
+    text-align: center;
+}
+
+.progress-section h2 {
+    font-size: 1.5rem;
+    color: var(--text-color-primary);
+    margin-bottom: 2rem; /* Mais espaço */
+}
+
+/* O print mostra uma LINHA, não uma barra grossa */
+.progress-bar-container {
+    width: 100%;
+    height: 6px; /* Altura fina */
+    background-color: var(--checklist-item-bg); /* Fundo da linha */
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5rem; /* Mais espaço */
+}
+
+.progress-bar {
+    width: 0%; 
+    height: 100%;
+    /* Gradiente do print (azul/roxo para amarelo) */
+    background: linear-gradient(90deg, var(--checklist-h3-color) 0%, var(--primary-color) 100%);
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+
+#progress-text {
+    font-size: 2.5rem; /* BEM GRANDE no print */
+    font-weight: 700;
+    color: var(--primary-color); /* Amarelo */
+    margin-bottom: 2rem;
+}
+
+/* Botão Reset (Fiel ao print) */
+.reset-button {
+    background-color: var(--checklist-item-bg); /* Fundo escuro */
+    color: var(--text-color-primary); /* Texto branco */
+    border: 1px solid var(--border-color-subtle);
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem; /* Menor que o original */
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reset-button:hover {
+    background-color: var(--border-color-subtle); /* Hover sutil */
+    transform: scale(1.02); /* Leve zoom */
+}
+
+.reset-button i {
+    margin-right: 8px;
+    color: var(--checklist-h3-color); /* Cor do ícone (azul/roxo) */
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    .page-header,
+    .checklist-group,
+    .progress-section,
+    .quote {
+        padding: 1.5rem;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    #progress-text {
+        font-size: 2rem;
+    }
+}

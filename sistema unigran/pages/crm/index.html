@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIGRAN - CRM</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../global-playbook.css">
+    </head>
+    
+<body>
+<div class="header-tabs" id="headerTabs">
+    <div class="tabs-container">
+
+        <div class="system-title" style="display: none;"></div>
+
+        <nav class="main-tabs-single-line" id="mainTabsSingleLine">
+            <a href="../home/index.html" class="main-tab-item">
+                🏠
+                <span class="title">INÍCIO</span>
+            </a>
+            <a href="../checklists-diarios/index.html" class="main-tab-item">
+                ✅
+                <span class="title">CHECKLIST DIÁRIO</span>
+            </a>
+            <a href="../crm/index.html" class="main-tab-item active">
+                📊
+                <span class="title">CRM</span>
+            </a>
+            <a href="../investimentos/index.html" class="main-tab-item">
+                💰
+                <span class="title">INVESTIMENTOS</span>
+            </a>
+            <a href="../formas de ingresso/index.html" class="main-tab-item">
+                🎯
+                <span class="title">FORMAS DE INGRESSO</span>
+            </a>
+            <a href="../diferenciais dos cursos/index.html" class="main-tab-item">
+                🚀
+                <span class="title">DIFERENCIAIS DOS CURSOS</span>
+            </a>
+            <a href="../informações extras/index.html" class="main-tab-item">
+                💡
+                <span class="title">INFORMAÇÕES EXTRAS</span>
+            </a>
+            <a href="../Unigran Academy/index.html" class="main-tab-item">
+                🎓
+                <span class="title">UNIGRAN ACADEMY</span>
+            </a>
+            <a href="../pergunte para a uny/index.html" class="main-tab-item">
+                🤖
+                <span class="title">PERGUNTE PARA A UNI</span>
+            </a>
+        </nav>
+
+        <div class="search-header">
+            <div class="search-box-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-box" placeholder="Pesquisar..." id="global-search-compact" />
+            </div>
+        </div>
+    </div>
+</div>
+    <main class="main-content">
+
+        <section class="crm-section intro">
+            <h1>📄 CRM - Sistema Completo</h1>
+            <p>Informações para alimentar o RD Station CRM.</p>
+        </section>
+
+        <section class="crm-section">
+            <h2 class="section-title">📄 Tarefas RD Station CRM</h2>
+            <div class="copy-list" id="tarefas-rdstation">
+                </div>
+        </section>
+
+        <section class="crm-section">
+            <h2 class="section-title">📄 Notas Iniciais</h2>
+            <div class="copy-list" id="notas-iniciais">
+                
+                <div class="copy-item" data-text-base="INSCRITO DIA XX/XX/XX[BR]FORMA DE INGRESSO[BR]CONTATO INICIADO PELO CANAL: {canal}[BR]AGUARDANDO RESPOSTA">
+                    <p class="copy-text">
+                        INSCRITO DIA XX/XX/XX<br>
+                        FORMA DE INGRESSO<br>
+                        CONTATO INICIADO PELO CANAL: <select class="channel-select" data-id="canal-1">
+                            <option value="RD CONVERSAS">RD CONVERSAS</option>
+                            <option value="WHATSAPP">WHATSAPP</option>
+                            <option value="LIGAÇÃO">LIGAÇÃO</option>
+                        </select><br>
+                        AGUARDANDO RESPOSTA
+                    </p>
+                    <button class="copy-btn" data-target="canal-1">
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="copy-item" data-text="INSCRITO DIA XX/XX/XX[BR]FORMA DE INGRESSO[BR]CONTATO INICIADO PELO E-MAIL (URL INVÁLIDA)[BR]AGUARDANDO RETORNO">
+                    <p class="copy-text">
+                        INSCRITO DIA XX/XX/XX<br>
+                        FORMA DE INGRESSO<br>
+                        CONTATO INICIADO PELO E-MAIL (URL INVÁLIDA)<br>
+                        AGUARDANDO RETORNO
+                    </p>
+                    <button class="copy-btn">
+                        📋 Copiar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="crm-section">
+            <h2 class="section-title">📈 Notas de Acompanhamento</h2>
+            <div class="copy-list" id="notas-acompanhamento">
+                </div>
+        </section>
+
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

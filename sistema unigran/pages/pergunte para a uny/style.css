@@ -1,0 +1,240 @@
+/* Importação de Fonte */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* --- Variáveis (Mantidas) --- */
+:root {
+    --primary-color: #f0ad4e; /* Amarelo UNIGRAN */
+    --secondary-color: #6a5acd; /* Roxo/Violeta (para destaque) */
+    --gradient-blue: #879FFF; 
+    
+    --page-bg: #1a1a1a; /* Fundo base escuro (igual ao global) */
+    --chat-bg: #212529; /* Fundo principal do chat/sidebar */
+    --chat-darker: #14141d;
+    --user-bubble-bg: #3a3a3a;
+    
+    --text-color-primary: #ffffff;
+    --text-color-secondary: #adb5bd;
+    --border-color: #495057;
+    --recording-color: #dc3545; 
+    --success-color: #28a745;
+    --font-family: 'Poppins', sans-serif;
+}
+
+/* --- Reset e Fundo com Gradiente (Igual à Home) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--page-bg); /* Fundo sólido de fallback */
+    color: var(--text-color-primary);
+    line-height: 1.6;
+    height: 100vh;
+    overflow: hidden; /* Evita rolagem da página inteira */
+}
+
+/* Background animado (Trazido do global-playbook.css) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(22, 78, 155, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(250, 186, 43, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(22, 78, 155, 0.2) 0%, transparent 50%);
+    z-index: -1;
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+/* --- FIM DO FUNDO GRADIENTE --- */
+
+/* --- REMOVIDO: .chat-page-container e .chat-sidebar --- */
+.chat-sidebar {
+    display: none; /* Esconde a sidebar antiga */
+}
+
+/* --- 2. ÁREA PRINCIPAL (CHAT) --- */
+.chat-main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background-color: transparent; 
+}
+
+/* Header antigo removido */
+.chat-main-header {
+    display: none;
+}
+
+/* --- Corpo do Chat (Conversa) --- */
+.chat-body-full {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px 20px 40px 20px;
+    max-width: 900px; /* Limita a largura da conversa */
+    width: 100%;
+    margin: 0 auto;
+
+    /* --- NOVAS REGRAS PARA ESCONDER A SCROLLBAR --- */
+    scrollbar-width: none; /* Para Firefox */
+    -ms-overflow-style: none; /* Para IE/Edge */
+}
+
+/* Regra separada para WebKit (Chrome, Safari) */
+.chat-body-full::-webkit-scrollbar {
+    display: none; /* Para Chrome, Safari, Opera */
+}
+/* --- FIM DAS NOVAS REGRAS --- */
+
+
+/* --- Estilos do Chat (Balões e Mensagens) --- */
+.message {
+    display: flex;
+    margin-bottom: 25px;
+}
+.uny-message { justify-content: flex-start; }
+.user-message { justify-content: flex-end; }
+
+.bubble {
+    max-width: 80%;
+    padding: 12px 18px;
+    border-radius: 24px;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+.uny-message .bubble {
+    background-color: var(--chat-bg);
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.user-message .bubble {
+    background-color: var(--user-bubble-bg);
+    border-bottom-right-radius: 4px;
+}
+
+/* ---------------------------------- */
+/* --- 3. FOOTER (INPUT & BUTTONS) --- */
+/* ---------------------------------- */
+.chat-footer-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto; /* Centraliza o wrapper */
+    padding: 0 20px 20px 20px; /* Padding inferior para o botão de reset */
+    flex-shrink: 0; /* Impede que o footer encolha */
+    background-color: transparent; /* Garante que o gradiente apareça */
+}
+
+.chat-footer-full {
+    padding: 0;
+    background-color: transparent;
+    border-top: none;
+}
+
+.input-container-full {
+    display: flex;
+    align-items: center;
+    background-color: var(--chat-bg); /* Fundo do input */
+    border: 1px solid var(--border-color);
+    border-radius: 28px; /* Borda arredondada (estilo Gemini) */
+    padding: 8px;
+}
+
+.input-container-full input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    background: none;
+    color: var(--text-color-primary);
+    font-size: 1rem;
+    margin: 0 10px;
+    outline: none;
+}
+/* Placeholder no estilo Gemini */
+.input-container-full input[type="text"]::placeholder {
+    color: var(--text-color-secondary);
+    opacity: 0.8;
+}
+
+.action-button {
+    background: none;
+    border: none;
+    color: var(--text-color-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    transition: color 0.2s;
+}
+
+.action-button:hover {
+    color: var(--primary-color);
+}
+.action-button.recording { color: var(--recording-color); }
+.action-button.attached { color: var(--success-color); }
+
+.send-button {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Botão de envio redondo */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background-color 0.2s;
+}
+
+.send-button:hover { background-color: #d99a45; }
+
+/* Disclaimer removido (conforme HTML) */
+.disclaimer {
+    display: none;
+}
+#uny-file-input { display: none; }
+
+
+/* --- Botão de Reset (Novo Estilo) --- */
+.reset-chat-button {
+    background: none;
+    border: none;
+    color: var(--text-color-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px; /* Espaço entre a barra e o botão */
+    transition: color 0.2s;
+}
+.reset-chat-button:hover {
+    color: var(--primary-color);
+}
+
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .chat-body-full {
+        max-width: 100%;
+        padding: 15px;
+    }
+    .chat-footer-wrapper {
+        max-width: 100%;
+        padding: 10px;
+    }
+    .input-container-full {
+        padding: 5px;
+    }
+}

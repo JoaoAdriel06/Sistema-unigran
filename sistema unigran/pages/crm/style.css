@@ -1,0 +1,212 @@
+/* Importação de Fonte */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* --- Variáveis (Versão SEM gradiente nas bordas) --- */
+:root {
+    --primary-color: #f0ad4e; /* Amarelo UNIGRAN */
+    --gradient-blue: #879FFF; 
+    --page-bg: #1a1a1a; /* Fundo base escuro (igual ao global) */
+    --block-bg: #2c2c2c; /* Fundo dos blocos */
+    --item-bg: #212529; /* Fundo dos itens internos */
+    
+    --text-color-primary: #ffffff;
+    --text-color-secondary: #adb5bd;
+    --border-color-subtle: #495057; /* Borda sólida sutil */
+    --font-family: 'Inter', sans-serif;
+    --color-success: #28a745;
+    
+    --copy-btn-bg: #3a3a3a;
+    --copy-btn-text: var(--text-color-secondary);
+}
+
+/* --- Reset e Fundo com Gradiente (Igual à Home) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--page-bg); /* Fundo sólido de fallback */
+    color: var(--text-color-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden; /* Evita scroll horizontal do gradiente */
+}
+
+/* Background animado (Trazido do global-playbook.css) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(22, 78, 155, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(250, 186, 43, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(22, 78, 155, 0.2) 0%, transparent 50%);
+    z-index: -1;
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+/* --- FIM DO FUNDO GRADIENTE --- */
+
+/* Remove o header antigo */
+.header {
+    display: none;
+}
+
+/* --- Conteúdo Principal (Wrapper) --- */
+.main-content {
+    padding: 2rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* --- Estilo dos Blocos (SEM Linha Gradiente) --- */
+.intro,
+.crm-section {
+    background-color: var(--block-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color-subtle); /* Borda sólida */
+}
+
+/* Títulos dos Blocos */
+.intro h1,
+.section-title {
+    font-size: 1.5rem;
+    color: var(--text-color-primary);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.intro p {
+    color: var(--text-color-secondary);
+    font-size: 1rem;
+}
+
+/* --- Lista de Itens para Cópia --- */
+.copy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem; /* Espaço entre os itens */
+}
+
+/* --- Item de Cópia (SEM Borda Gradiente) --- */
+.copy-item {
+    border: 1px solid var(--border-color-subtle); /* Borda sólida sutil */
+    border-radius: 8px;
+    background-color: var(--item-bg); /* Fundo do item (mais escuro) */
+    
+    /* Layout do item */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+}
+
+/* Texto dentro do item */
+.copy-text {
+    flex-grow: 1;
+    white-space: pre-wrap;
+    color: var(--text-color-secondary);
+    font-size: 0.95rem;
+    line-height: 1.4; /* Reduz o espaçamento entre linhas */
+}
+
+/* Ajuste fino para o espaçamento do <br> */
+.copy-text br {
+    content: "";
+    margin: 0.2em 0; /* Espaçamento vertical do <br> */
+    display: block;
+}
+
+/* --- Botão de Cópia (SEM Borda Gradiente) --- */
+.copy-btn {
+    border: 1px solid var(--border-color-subtle); /* Borda sólida */
+    border-radius: 6px;
+    background-color: var(--copy-btn-bg); /* Fundo do botão */
+
+    /* Estilo do texto e emoji */
+    color: var(--copy-btn-text);
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    cursor: pointer;
+    font-family: var(--font-family); /* Garante a fonte correta */
+    transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+    background-color: #4a4a4a;
+    border-color: #5a5a5a;
+}
+
+/* Estado "Copiado" */
+.copy-btn.copied {
+    background-color: var(--color-success);
+    color: var(--text-color-primary);
+    border-color: var(--color-success);
+}
+
+/* --- Estilo para o Select (SEM Borda Gradiente) --- */
+.channel-select {
+    border: 1px solid var(--primary-color); /* Borda amarela sólida */
+    border-radius: 6px;
+    background-color: var(--item-bg); /* Fundo escuro */
+    
+    /* Estilo do texto e seta */
+    color: var(--text-color-primary);
+    padding: 0.5rem 0.8rem;
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-left: 0.5rem; /* Espaço ao lado do texto */
+
+    /* Seta customizada amarela */
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23f0ad4e' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1em;
+    padding-right: 2rem;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem;
+    }
+
+    .intro,
+    .crm-section {
+        padding: 1.5rem;
+    }
+
+    .copy-item {
+        flex-direction: column;
+        align-items: stretch; /* Botão fica 100% */
+    }
+
+    .copy-btn {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .intro h1,
+    .section-title {
+        font-size: 1.3rem;
+    }
+}

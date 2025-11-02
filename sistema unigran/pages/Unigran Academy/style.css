@@ -1,0 +1,281 @@
+/* --- Importações e Variáveis --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Cores baseadas no global-playbook.css */
+  --primary-color: #f0ad4e;
+  --secondary-color: #6f42c1; /* Roxo (para citação) */
+  --background-color: #1a1a1a;
+  --card-bg: #2c2c2c;
+  --item-bg: #212529;
+  --text-color-primary: #ffffff;
+  --text-color-secondary: #adb5bd;
+  --border-color: #495057;
+  --font-family: 'Poppins', sans-serif;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Estilos dos Botões do Drive --- */
+.drive-buttons-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.drive-button {
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-grow: 1;
+    text-align: center;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.drive-button:hover {
+    transform: translateY(-3px);
+}
+
+/* Botão Principal (Amarelo) */
+.drive-button {
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+/* Botão Secundário (Borda) */
+.drive-button.secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+.drive-button.secondary:hover {
+    background-color: rgba(240, 173, 78, 0.1); /* Fundo amarelo leve no hover */
+}
+
+
+/* --- Grid de Módulos (Estilo Gioflix) --- */
+.card-grid {
+    display: grid;
+    /* 4 colunas no desktop, 1 no mobile */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.module-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--card-shadow);
+}
+
+.module-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Imagem de Fundo (AGORA COM EMOJI) */
+.module-card-thumbnail {
+    height: 150px;
+    background-color: var(--item-bg);
+    display: grid;
+    place-items: center;
+    font-size: 5rem; /* Tamanho do emoji */
+    color: var(--text-color-primary); /* Cor do emoji (texto) */
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Conteúdo do Card */
+.module-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.module-card-content h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color-primary);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+}
+
+.module-card-content p {
+    font-size: 0.9rem;
+    color: var(--text-color-secondary);
+    line-height: 1.5;
+    flex-grow: 1; /* Empurra o "Abrir Módulo" para baixo */
+}
+
+.module-card-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 1rem;
+    display: block;
+}
+
+/* --- Botão Voltar (Copiado de Formas de Ingresso) --- */
+.back-button-container {
+    margin: 2rem 0;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.back-button-container.active {
+    display: block;
+    opacity: 1;
+}
+.back-button {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem; /* Espaço para o emoji */
+    transition: background-color 0.2s;
+}
+.back-button:hover {
+    background-color: #d99a45;
+}
+
+
+/* --- Conteúdo do Módulo (Quando Aberto) --- */
+.module-content-wrapper {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    /* Fundo de card para o conteúdo */
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 2rem 3rem;
+}
+.module-content-wrapper.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Títulos do conteúdo */
+.module-content-wrapper h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+.module-content-wrapper h2 {
+    font-size: 1.2rem;
+    color: var(--text-color-secondary);
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+/* Estilos de Texto (Copiados do seu CSS antigo) */
+.module-content-wrapper h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin: 2.5rem 0 1rem 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--primary-color); 
+}
+.module-content-wrapper h4 {
+    font-size: 1.3rem;
+    color: var(--text-color-primary);
+    margin: 1.5rem 0 0.8rem 0;
+    font-weight: 600;
+}
+.module-content-wrapper p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+.module-content-wrapper ul, 
+.module-content-wrapper ol {
+    margin: 0 0 1.5rem 0;
+    color: var(--text-color-secondary);
+    font-size: 1rem;
+    padding-left: 20px;
+}
+.module-content-wrapper li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+    line-height: 1.7;
+}
+
+/* MUDANÇA: Bullet point trocado por emoji */
+.module-content-wrapper li::before {
+    content: '🔹'; /* Emoji de losango */
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+}
+
+.module-content-wrapper li strong {
+    color: var(--text-color-primary);
+}
+.module-content-wrapper .quote {
+    font-style: italic;
+    color: var(--secondary-color); 
+    border-left: 5px solid var(--secondary-color);
+    padding: 15px 20px;
+    margin: 2rem 0;
+    background-color: var(--item-bg);
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
+.module-content-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.module-content-wrapper th, .module-content-wrapper td {
+    padding: 12px;
+    border: 1px solid #343a40;
+    text-align: left;
+    font-size: 0.95rem;
+}
+.module-content-wrapper th {
+    background-color: #343a40;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.module-content-wrapper td {
+    background-color: #242424;
+    color: var(--text-color-secondary);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .module-content-wrapper {
+        padding: 1.5rem;
+    }
+    .module-content-wrapper h1 {
+        font-size: 1.8rem;
+    }
+    .drive-buttons-container {
+        flex-direction: column;
+    }
+}
