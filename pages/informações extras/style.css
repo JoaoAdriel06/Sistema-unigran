@@ -18,7 +18,7 @@
   margin-bottom: 1rem;
 }
 
-/* --- Ramais Customizados --- */
+/* --- Título da Seção de Ramais --- */
 .ramal-section-title {
     font-size: 1.2rem;
     color: var(--primary-color);
@@ -28,78 +28,72 @@
     border-bottom: 1px solid var(--copy-border-color);
 }
 
-.ramal-grid {
-    display: grid;
-    /* Tenta 5 colunas, mas flexível para telas menores */
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
-    gap: 1rem;
+
+/* --- NOVO ESTILO DE TABELA DE RAMAIS --- */
+.ramal-table {
+    width: 100%;
+    border-collapse: collapse; /* Bordas unificadas */
     margin-bottom: 2rem;
+    background-color: var(--card-background); /* Fundo do card, mantendo consistência */
+    border-radius: 8px; /* Borda arredondada na tabela inteira */
+    overflow: hidden; /* Para o radius funcionar no th */
+    border: 1px solid var(--border-color-subtle); /* Borda em volta da tabela */
 }
 
-.ramal-card {
-    background-color: var(--card-background);
-    padding: 1rem 0.5rem;
-    border-radius: 6px;
-    text-align: center;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100px;
+.ramal-table th,
+.ramal-table td {
+    padding: 1rem;
+    text-align: left;
+    /* "bordinha em volta de cada ramal" -> borda na linha */
+    border-bottom: 1px solid var(--border-color-subtle);
 }
 
-.ramal-card:hover {
-    background-color: #3a3a3a;
-    border-color: var(--primary-color);
-}
-
-.ramal-card-role {
-    font-size: 0.8rem;
-    color: var(--text-color-secondary);
-    line-height: 1.2;
-    margin-bottom: 0.4rem;
-    min-height: 30px; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.ramal-card-name {
-    font-size: 0.95rem;
+.ramal-table thead th {
+    background-color: var(--background-color); /* Fundo mais escuro para o header */
+    color: var(--primary-color);
+    font-size: 0.9rem;
     font-weight: 600;
-    color: var(--text-color-primary);
-    margin-bottom: 0.5rem;
-    line-height: 1.1;
-    min-height: 30px; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-transform: uppercase;
 }
 
-.ramal-card-number {
-    font-size: 1.5rem;
+.ramal-table tbody tr:last-child td {
+    border-bottom: none; /* Remove a última borda */
+}
+
+.ramal-table tbody tr {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.ramal-table tbody tr:hover {
+    background-color: #3a3a3a; /* Hover sutil */
+}
+
+.ramal-table td:nth-child(1) { /* Cargo */
+    color: var(--text-color-secondary);
+    font-size: 0.9rem;
+    width: 35%;
+}
+.ramal-table td:nth-child(2) { /* Nome */
+    color: var(--text-color-primary);
+    font-weight: 600;
+    width: 45%;
+}
+.ramal-table td:nth-child(3) { /* Ramal */
+    color: var(--ramal-color); /* Amarelo, como antes */
     font-weight: 700;
-    color: var(--ramal-color);
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid #495057;
+    font-size: 1.2rem;
+    width: 20%;
 }
 
 /* Estilo para Ramais Copiados */
-.ramal-card.copied {
-    background-color: var(--success-color);
-    border-color: var(--success-color);
+.ramal-table tr.copied {
+    background-color: var(--success-color); /* Verde */
 }
-.ramal-card.copied .ramal-card-role, 
-.ramal-card.copied .ramal-card-name, 
-.ramal-card.copied .ramal-card-number {
-    color: white;
+.ramal-table tr.copied td {
+    color: white !important; /* Força a cor no clique */
 }
-.ramal-card.copied .ramal-card-number {
-    border-top-color: rgba(255, 255, 255, 0.5);
-}
+/* --- FIM DO NOVO ESTILO DE TABELA --- */
 
 
 /* --- Abas de Navegação (Aba-menu) --- */
@@ -140,7 +134,7 @@
     border-color: var(--primary-color);
 }
 
-/* --- Barra de Busca --- */
+/* --- Barra de Busca (Mantida) --- */
 .search-bar-container {
   position: relative;
   margin-bottom: 1.5rem;
@@ -166,18 +160,14 @@
       grid-template-columns: 1fr; /* Coluna única no mobile */
       gap: 0.5rem;
   }
-  .ramal-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 0.5rem;
+  
+  /* Ajuste da tabela no mobile */
+  .ramal-table th,
+  .ramal-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.9rem;
   }
-  .ramal-card {
-      padding: 0.8rem 0.3rem;
-      min-height: 80px;
-  }
-  .ramal-card-name {
-      font-size: 0.85rem;
-  }
-  .ramal-card-number {
-      font-size: 1.3rem;
+  .ramal-table td:nth-child(3) { /* Ramal */
+    font-size: 1rem;
   }
 }

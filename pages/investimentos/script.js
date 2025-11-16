@@ -1,281 +1,228 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Cor de destaque: 1 (Verde: Matrícula Grátis/Padrão), 2 (Amarelo: Regras Especiais/Desconto Fixo), 3 (Vermelho: Exclusivo)
-  const courses = [
-    // Cor 3: Cursos Exclusivos
+  // --- DADOS PARA OS CARDS DE DESCONTO (Fonte: Seu texto digitado) ---
+  const descontosData = [
     {
-      name: "Odontologia",
-      duration: 10,
-      formacao: "Bacharel/ integral",
-      investimento_integral: "R$ 3.280,00",
-      desconto_pontualidade: "R$ 3.018,00",
-      desconto_especial: "-",
-      color: 3,
-    },
-
-    // Cor 2: Cursos com Regras/Descontos Especiais
-    {
-      name: "Nutrição",
-      duration: 8,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.655,00",
-      desconto_pontualidade: "R$ 1.523,00",
-      desconto_especial: "50% - R$ 828,00",
-      color: 2,
+      id: "convenios",
+      title: "1️⃣ Convênios com Empresas",
+      content: `
+        🔥 <strong>Desconto:</strong> 25% a 30%<br>
+        ✔️ <strong>Válido para:</strong> Cursos presenciais e pós presenciais<br>
+        ❌ <strong>Exceto:</strong> Odontologia<br>
+        📌 <strong>Regras adicionais:</strong><br>
+        – Benefício aplicado diretamente na matrícula e mensalidades conforme convênio cadastrado (Consultar documento de convênios)
+      `,
+      searchTerms: "convenio empresa 25% 30% odontologia",
     },
     {
-      name: "Gastronomia",
-      duration: 4,
-      formacao: "Tecnólogo/ noturno",
-      investimento_integral: "R$ 1.655,00",
-      desconto_pontualidade: "R$ 1.523,00",
-      desconto_especial: "40% - R$ 993,00",
-      color: 2,
+      id: "gastro-familia",
+      title: "2️⃣ Curso de Gastronomia (Funcionários e Familiares)",
+      content: `
+        🔥 <strong>Desconto:</strong> 60%<br>
+        ✔️ <strong>Válido para:</strong> Funcionários, filhos e cônjuges<br>
+        📌 <strong>Outros familiares:</strong> Análise individual pela Tesouraria
+      `,
+      searchTerms: "gastronomia 60% funcionario familia filhos conjuge",
     },
     {
-      name: "Administração",
-      duration: 8,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.126,00",
-      desconto_pontualidade: "R$ 1.036,00",
-      desconto_especial: "30% - R$ 788,00",
-      color: 2,
+      id: "egresso",
+      title: "3️⃣ Aluno Egresso UNIGRAN",
+      content: `
+        🎓 <strong>Presencial e Polos 1 e 3 do EAD Dourados</strong><br>
+        🔥 <strong>Desconto:</strong> 50% na matrícula e mensalidade<br>
+        ✔️ <strong>Válido para:</strong> Todos os cursos, <strong>exceto</strong> Gastronomia e Odontologia<br>
+        🏫 <strong>Inclui:</strong> Formados no Presencial e polos 1 (polo modelo) & 3 (Polo do Centro) de Dourados.<br>
+        📌 <strong>Regras adicionais:</strong><br>
+        – Ed. Física (Licenciatura ↔ Bacharelado): desconto continua em 50%. Válido para todos os polos EAD/SEMI e presencial.<br>
+        – Alunos cursando mais de um curso presencial → 50% aplicado ao curso de <strong>maior valor</strong> (exceto Odonto).
+      `,
+      searchTerms: "egresso 50% ex-aluno polos 1 3 dourados gastronomia odontologia educação física",
     },
     {
-      name: "Ciências Contábeis",
-      duration: 8,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.126,00",
-      desconto_pontualidade: "R$ 1.036,00",
-      desconto_especial: "30% - R$ 788,00",
-      color: 2,
-    },
-
-    // Cor 1: Demais Cursos (Matrícula Grátis/Padrão)
-    {
-      name: "Medicina Veterinária",
-      duration: 10,
-      formacao: "Bacharel/ integral",
-      investimento_integral: "R$ 2.368,00",
-      desconto_pontualidade: "R$ 2.179,00",
-      desconto_especial: "-",
-      color: 1,
+      id: "simultanea",
+      title: "4️⃣ Graduação simultânea EAD/Semi e Presencial",
+      content: `
+        ✔️ <strong>Aluno EAD/Semi indo para Presencial:</strong><br>
+        → 50% (exceto Odontologia)<br>
+        → Válido somente em Dourados (Polos 1 e 3)<br>
+        <br>
+        ✔️ <strong>Aluno Presencial indo para EAD/Semi:</strong><br>
+        → 30%<br>
+        → Orientar a procurar a Tesouraria EAD<br>
+        → Não informar desconto ao aluno diretamente
+      `,
+      searchTerms: "simultanea ead presencial 50% 30% polos 1 3",
     },
     {
-      name: "Arquitetura",
-      duration: 10,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.655,00",
-      desconto_pontualidade: "R$ 1.523,00",
-      desconto_especial: "-",
-      color: 1,
+      id: "transferencia-capital",
+      title: "5️⃣ Transferência / Egresso – UNIGRAN Capital → Dourados",
+      content: `
+        🔥 <strong>Desconto:</strong> 50% para Egressos que vem da capital.<br>
+        ✔️ <strong>Válido para:</strong> Formados na UNIGRAN Capital que ingressam em nova graduação<br>
+        ❌ <strong>Exceto:</strong> Odontologia<br>
+        <br>
+        📌 <strong>Regra de Transferência:</strong><br>
+        – Alunos transferidos da Capital mantêm o mesmo desconto que tinham lá, exceto:<br>
+        • Planos governamentais<br>
+        • Convênios que Dourados não participa
+      `,
+      searchTerms: "transferencia egresso capital dourados 50%",
     },
     {
-      name: "Biomedicina",
-      duration: 10,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.655,00",
-      desconto_pontualidade: "R$ 1.523,00",
-      desconto_especial: "-",
-      color: 1,
+      id: "estagiario",
+      title: "6️⃣ Estagiários da UNIGRAN",
+      content: `
+        🧩 <strong>Estagiários UNIGRAN – Regras Específicas</strong><br>
+        ✔️ <strong>Auxílio transporte:</strong> Estagiário <strong>não tem direito</strong> a desconto de ônibus<br>
+        ✔️ <strong>Cobertura:</strong> Estágio cobre adaptações, mas <strong>não cobre DP</strong>
+      `,
+      searchTerms: "estagiario dp adaptação transporte onibus",
     },
     {
-      name: "Enfermagem",
-      duration: 10,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.655,00",
-      desconto_pontualidade: "R$ 1.523,00",
-      desconto_especial: "-",
-      color: 1,
+      id: "tecnico-enfermagem",
+      title: "7️⃣ Curso Técnico → Enfermagem",
+      content: `
+        🏥 <strong>Alunos com Curso Técnico em ENFERMAGEM</strong><br>
+        🔥 <strong>Desconto:</strong> 50%<br>
+        ✔️ <strong>Válido para:</strong> Calouros com certificado de Curso Técnico em Enfermagem<br>
+        ➡️ <strong>Aplicação:</strong> Desconto aplicado desde a matrícula e por todo o curso
+      `,
+      searchTerms: "tecnico enfermagem 50% calouro certificado",
     },
     {
-      name: "Farmácia",
-      duration: 10,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.655,00",
-      desconto_pontualidade: "R$ 1.523,00",
-      desconto_especial: "-",
-      color: 1,
+      id: "enem",
+      title: "8️⃣ ENEM – Descontos 2026",
+      content: `
+        🔥 <strong>Matrícula – Cursos em Geral:</strong><br>
+        Média 450 a 799 → <strong>30%</strong> na matrícula<br>
+        Média 800 a 1000 → <strong>50%</strong> na matrícula<br>
+        <br>
+        🔥 <strong>Matrícula – Odontologia (Regra Exclusiva):</strong><br>
+        Média 500 a 1000 → <strong>35%</strong> na matrícula<br>
+        <br>
+        📌 <strong>Mensalidades via ENEM:</strong><br>
+        – Possibilidade de <strong>25%</strong> de desconto<br>
+        – Válido <strong>somente se</strong> o aluno não possuir outro desconto<br>
+        – Não se aplica a: FIES e MS Supera<br>
+        – Cada caso deve ser analisado individualmente<br>
+        → Encaminhar para Simone ou João<br>
+        <br>
+        📌 <strong>Cálculo da média do ENEM:</strong><br>
+        MÉDIA = soma das 5 notas ÷ 5
+      `,
+      searchTerms: "enem 2026 30% 50% 35% 25% matricula mensalidade odontologia",
     },
     {
-      name: "Fisioterapia",
-      duration: 10,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.655,00",
-      desconto_pontualidade: "R$ 1.523,00",
-      desconto_especial: "-",
-      color: 1,
+      id: "fixos",
+      title: "9️⃣ Cursos com Descontos Fixos",
+      content: `
+        ⭐ <strong>Cursos com 50% na matrícula e mensalidade:</strong><br>
+        – Design<br>
+        – Radiologia<br>
+        <br>
+        ✨ <strong>Cursos com até 50% na matrícula:</strong><br>
+        – Educação Física<br>
+        – Arquitetura<br>
+        – Fisioterapia<br>
+        – Produção Agrícola<br>
+        <br>
+        🎯 <strong>Cursos com desconto institucional fixo (curso todo):</strong><br>
+        – Nutrição → <strong>50%</strong><br>
+        – Gastronomia → <strong>40%</strong><br>
+        – Administração → <strong>30%</strong><br>
+        – Ciências Contábeis → <strong>30%</strong>
+      `,
+      searchTerms: "fixo 50% 40% 30% design radiologia nutrição gastronomia administração ciências contábeis",
     },
     {
-      name: "Engenharia Civil",
-      duration: 10,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.655,00",
-      desconto_pontualidade: "R$ 1.523,00",
-      desconto_especial: "-",
-      color: 1,
-    },
-    {
-      name: "Agronomia",
-      duration: 10,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.562,00",
-      desconto_pontualidade: "R$ 1.437,00",
-      desconto_especial: "-",
-      color: 1,
-    },
-    {
-      name: "Psicologia",
-      duration: 10,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.554,00",
-      desconto_pontualidade: "R$ 1.430,00",
-      desconto_especial: "-",
-      color: 1,
-    },
-    {
-      name: "Direito",
-      duration: 10,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.435,00",
-      desconto_pontualidade: "R$ 1.320,00",
-      desconto_especial: "-",
-      color: 1,
-    },
-    {
-      name: "Engenharia de Software",
-      duration: 8,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.309,00",
-      desconto_pontualidade: "R$ 1.204,00",
-      desconto_especial: "-",
-      color: 1,
-    },
-    {
-      name: "Educação Física",
-      duration: 8,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 1.006,00",
-      desconto_pontualidade: "R$ 926,00",
-      desconto_especial: "-",
-      color: 1,
-    },
-    {
-      name: "Radiologia",
-      duration: 6,
-      formacao: "Tecnólogo/ noturno",
-      investimento_integral: "R$ 907,00",
-      desconto_pontualidade: "R$ 834,00",
-      desconto_especial: "-",
-      color: 1,
-    },
-    {
-      name: "Estética e Cosmética",
-      duration: 4,
-      formacao: "Tecnólogo/ noturno",
-      investimento_integral: "R$ 907,00",
-      desconto_pontualidade: "R$ 834,00",
-      desconto_especial: "-",
-      color: 1,
-    },
-    {
-      name: "Produção Agrícola",
-      duration: 6,
-      formacao: "Tecnólogo/ noturno",
-      investimento_integral: "R$ 907,00",
-      desconto_pontualidade: "R$ 834,00",
-      desconto_especial: "-",
-      color: 1,
-    },
-    {
-      name: "Publicidade e Propaganda",
-      duration: 8,
-      formacao: "Bacharel/ noturno",
-      investimento_integral: "R$ 907,00",
-      desconto_pontualidade: "R$ 834,00",
-      desconto_especial: "-",
-      color: 1,
+      id: "indigena",
+      title: "🔟 Aluno Indígena",
+      content: `
+        🏛️ <strong>Desconto:</strong> 50% na matrícula e mensalidade<br>
+        ✅ <strong>Válido para:</strong> Todos os cursos, <strong>exceto Odontologia</strong>
+      `,
+      searchTerms: "indigena 50% odontologia",
     },
   ];
 
-  // 2. Elementos DOM
-  const tableBody = document.getElementById("course-table-body");
-  const searchInput = document.getElementById("course-search");
+  // --- 1. LÓGICA DOS CARDS PESQUISÁVEIS ---
+  const cardContainer = document.getElementById("discount-card-container");
+  const searchInput = document.getElementById("discount-search");
+  const noResultsMessage = document.getElementById("no-results-message");
 
-  // 3. Função de Renderização da Tabela
-  function renderTable(data) {
-    tableBody.innerHTML = ""; // Limpa o conteúdo atual
-    // Mudança: Colspan ajustado de 4 para 6 para corresponder às colunas da tabela
-    if (data.length === 0) {
-      tableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-color-secondary);">Nenhum curso encontrado com o termo de busca.</td></tr>`;
-      return;
+  /**
+   * Renderiza os cards de desconto
+   */
+  function renderCards(data) {
+    if (!cardContainer) return; // Se a aba não estiver carregada, não faz nada
+    
+    cardContainer.innerHTML = "";
+    if (data.length === 0 && noResultsMessage) {
+      noResultsMessage.style.display = "block";
+    } else if (noResultsMessage) {
+      noResultsMessage.style.display = "none";
     }
 
-    data.forEach((course) => {
-      const row = document.createElement("tr");
-      // Aplica a classe de cor baseada no campo 'color'
-      row.classList.add(`table-row-color-${course.color}`);
+    data.forEach(item => {
+      const card = document.createElement("div");
+      card.classList.add("discount-card");
+      card.dataset.searchTerms = item.searchTerms;
 
-      row.innerHTML = `
-                <td><b>${course.name}</b></td>
-                <td>${course.duration}</td>
-                <td>${course.formacao}</td>
-                <td>${course.investimento_integral}</td>
-                <td>${course.desconto_pontualidade}</td>
-                <td>${course.desconto_especial}</td> `;
-      tableBody.appendChild(row);
+      // --- HTML NOVO (Estilo "Formas de Ingresso") ---
+      card.innerHTML = `
+        <h3>${item.title}</h3>
+        <div class="discount-card-content">
+          ${item.content}
+        </div>
+      `;
+      cardContainer.appendChild(card);
     });
   }
 
-  // 4. Lógica de Busca (Filtro)
-  function filterTable() {
-    const searchTerm = searchInput.value.toLowerCase();
-
-    const filteredCourses = courses.filter((course) =>
-      // Filtra apenas pelo nome do curso
-      course.name.toLowerCase().includes(searchTerm)
-    );
-
-    renderTable(filteredCourses);
-  }
-
-  // 5. Inicialização e Event Listeners
-
-  // Renderiza a tabela inicial
-  renderTable(courses);
-
-  // Adiciona o ouvinte para a barra de busca
-  searchInput.addEventListener("keyup", filterTable);
-
-  // Lógica de Cópia (Reutilizada e Adaptada)
-  function copyToClipboard(text, button) {
-    if (!navigator.clipboard) {
-      alert("Recurso de cópia indisponível no seu navegador.");
-      return;
+  /**
+   * Filtra os cards com base no input de busca
+   */
+  function filterCards() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    
+    if (!searchTerm) {
+        renderCards(descontosData); // Mostra todos se a busca estiver vazia
+        return;
     }
 
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        const originalText = button.innerHTML;
-        button.classList.add("copied");
-        button.innerHTML = '<i class="fas fa-check"></i> Copiado!';
-
-        setTimeout(() => {
-          button.classList.remove("copied");
-          button.innerHTML = originalText;
-        }, 1500);
-      })
-      .catch((err) => {
-        console.error("Erro ao copiar: ", err);
-        alert("Falha ao copiar o texto. Tente novamente.");
-      });
+    const filteredData = descontosData.filter(item => 
+        item.title.toLowerCase().includes(searchTerm) || // Adiciona busca pelo título
+        item.searchTerms.toLowerCase().includes(searchTerm)
+    );
+    
+    renderCards(filteredData);
   }
 
-  // Ouvinte de eventos para botões de cópia de desconto
-  document.querySelectorAll(".copy-discount").forEach((button) => {
-    button.addEventListener("click", () => {
-      const textToCopy = button.dataset.text;
-      copyToClipboard(textToCopy, button);
+  // --- 2. LÓGICA DA NAVEGAÇÃO POR ABAS ---
+  const tabLinks = document.querySelectorAll(".tab-link");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  tabLinks.forEach(link => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const targetId = link.dataset.tab;
+
+      // 1. Remove 'active' de todos os links e conteúdos
+      tabLinks.forEach(l => l.classList.remove("active"));
+      tabContents.forEach(c => c.classList.remove("active"));
+
+      // 2. Adiciona 'active' ao link clicado e ao conteúdo alvo
+      link.classList.add("active");
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.classList.add("active");
+      }
     });
   });
+
+  // --- 3. INICIALIZAÇÃO ---
+  // Verifica se os elementos existem antes de adicionar listeners
+  if (cardContainer && searchInput && noResultsMessage) {
+    renderCards(descontosData); // Renderiza os cards de desconto na inicialização
+    searchInput.addEventListener("keyup", filterCards); // Adiciona o listener da busca
+  }
 });

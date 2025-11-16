@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UNIGRAN - Investimentos</title>
     
-    <link rel="stylesheet" href=" ../../global-playbook.css"> <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href=" ../../global-playbook.css">
+    <link rel="stylesheet" href="./style.css" />
     
     </head>
   <body>
@@ -52,78 +53,50 @@
     <main class="main-content">
       <section class="intro">
         <h1>💰 Central de Investimentos</h1>
-        <p>Valores dos cursos e informações sobre descontos disponíveis.</p>
+        <p>Descontos, regras e tabelas de valores (Matrícula e Mensalidades).</p>
       </section>
 
-      <section class="crm-section">
+      <div class="tab-navigation">
+        <a href="#" class="tab-link active" data-tab="descontos-content">
+          🤑 Descontos & Regras 2026
+        </a>
+        <a href="#" class="tab-link" data-tab="tabela-2025-content">
+          📄 Tabela Matrícula (2025)
+        </a>
+        <a href="#" class="tab-link" data-tab="tabela-2026-content">
+          💸 Tabela Mensalidade (2026)
+        </a>
+      </div>
+      <section class="crm-section tab-content active" id="descontos-content">
         <h2 class="section-title">
-          🎯 Descontos Especiais Disponíveis
+          🤑 Descontos & Regras 2026
         </h2>
         <p class="section-description">
-          Descontos que podem ser aplicados imediatamente durante o atendimento:
+          Principais regras de descontos para o ciclo 2026. Use a busca para filtrar por palavra-chave (ex: "ENEM", "Egresso", "50%").
         </p>
-
-        <div class="discount-container">
-          <div class="discount-item">
-            <h3>🎓 Aluno Egresso UNIGRAN</h3>
-            <ul>
-              <li>
-                <span>💯</span> Desconto:
-                <b>50% na matrícula e mensalidade</b>
-              </li>
-              <li>
-                <span>✅</span> Válido para: Todos os
-                cursos, <b>exceto Gastronomia e Odontologia</b>
-              </li>
-              <li>
-                <span>🏦</span> Inclui: Alunos da UNIGRAN
-                Presencial e Polos 1 e 3 de Dourados
-              </li>
-            </ul>
-          </div>
-
-          <div class="discount-item">
-            <h3>🏛️ Aluno Indígena</h3>
-            <ul>
-              <li>
-                <span>💯</span> Desconto:
-                <b>50% na matrícula e mensalidade</b>
-              </li>
-              <li>
-                <span>✅</span> Válido para: Todos os
-                cursos, <b>exceto Odontologia</b>
-              </li>
-            </ul>
-            <div class="important-note">
-              <p>
-                ⚠️ Desconto de Gastronomia é de 40% da matrícula até as
-                mensalidades.
-              </p>
-              <p>
-                ⚠️ Matrícula realizada apenas na Secretaria. Comercial faz
-                acompanhamento no CRM.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="crm-section">
-        <h2 class="section-title">
-          📊 Planilha de Investimentos por Curso
-        </h2>
-        <p class="section-description">
-          Valores atualizados dos cursos oferecidos pela UNIGRAN Presencial.
-        </p>
-
+        
         <div class="search-bar-container">
           <input
             type="text"
-            id="course-search"
-            placeholder="Buscar curso (ex: Direito, Medicina...)"
+            id="discount-search"
+            placeholder="Buscar regra de desconto (ex: Egresso, ENEM, Gastronomia...)"
           />
         </div>
+        
+        <div class="discount-card-grid" id="discount-card-container">
+          </div>
+        <p id="no-results-message" style="display: none; text-align: center; color: var(--text-color-secondary); padding: 2rem;">Nenhuma regra encontrada com o termo de busca.</p>
 
+      </section>
+
+      <section class="crm-section tab-content" id="tabela-2025-content">
+        <h2 class="section-title">
+          📄 Tabela Matrícula (Ciclo 2025)
+        </h2>
+        <p class="section-description">
+          Valores do Ciclo 2025, usados como base para a **Matrícula** de novos alunos.
+        </p>
+        
         <div class="table-responsive">
           <table class="investment-table">
             <thead>
@@ -131,40 +104,465 @@
                 <th>CURSO</th>
                 <th>DURAÇÃO (semestres)</th>
                 <th>FORMAÇÃO</th>
+                <th>TURNO</th>
                 <th>INVESTIMENTO</th>
-                <th>DESCONTO DE PONTUALIDADE (até dia 10)</th>
+                <th>PONTUALIDADE (até dia 10)</th>
                 <th>DESCONTO ESPECIAL</th>
               </tr>
             </thead>
-            <tbody id="course-table-body"></tbody>
+            <tbody>
+              <tr>
+                <td>Odontologia</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Integral</td>
+                <td>R$ 3.280,00</td>
+                <td>R$ 3.018,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Medicina Veterinária</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Integral</td>
+                <td>R$ 2.368,00</td>
+                <td>R$ 2.179,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Arquitetura</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.655,00</td>
+                <td>R$ 1.523,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Biomedicina</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.655,00</td>
+                <td>R$ 1.523,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Enfermagem</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.655,00</td>
+                <td>R$ 1.523,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Farmácia</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.655,00</td>
+                <td>R$ 1.523,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Fisioterapia</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.655,00</td>
+                <td>R$ 1.523,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Engenharia Civil</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.655,00</td>
+                <td>R$ 1.523,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Nutrição</td>
+                <td>8</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.655,00</td>
+                <td>R$ 1.523,00</td>
+                <td class="special-discount">50% R$ 828,00</td>
+              </tr>
+              <tr>
+                <td>Gastronomia</td>
+                <td>4</td>
+                <td>Tecnólogo</td>
+                <td>Noturno</td>
+                <td>R$ 1.655,00</td>
+                <td>R$ 1.523,00</td>
+                <td class="special-discount">40% R$ 993,00</td>
+              </tr>
+              <tr>
+                <td>Agronomia</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.562,00</td>
+                <td>R$ 1.437,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Psicologia</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno/Diurno</td>
+                <td>R$ 1.554,00</td>
+                <td>R$ 1.430,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Direito</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno/Diurno</td>
+                <td>R$ 1.435,00</td>
+                <td>R$ 1.320,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Engenharia de Software</td>
+                <td>8</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.309,00</td>
+                <td>R$ 1.204,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Administração</td>
+                <td>8</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.126,00</td>
+                <td>R$ 1.036,00</td>
+                <td class="special-discount">30% R$ 788,00</td>
+              </tr>
+              <tr>
+                <td>Ciências Contábeis</td>
+                <td>8</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.126,00</td>
+                <td>R$ 1.036,00</td>
+                <td class="special-discount">30% R$ 788,00</td>
+              </tr>
+              <tr>
+                <td>Educação Física</td>
+                <td>8</td>
+                <td>Bacharel/ Licenciatura</td>
+                <td>Noturno</td>
+                <td>R$ 1.006,00</td>
+                <td>R$ 926,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Radiologia</td>
+                <td>6</td>
+                <td>Tecnólogo</td>
+                <td>Noturno</td>
+                <td>R$ 952,00</td>
+                <td>R$ 885,00</td>
+                <td class="special-discount">50% R$ 476,00</td>
+              </tr>
+              <tr>
+                <td>Estética e Cosmética</td>
+                <td>4</td>
+                <td>Tecnólogo</td>
+                <td>Noturno</td>
+                <td>R$ 907,00</td>
+                <td>R$ 834,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Produção Agrícola</td>
+                <td>6</td>
+                <td>Tecnólogo</td>
+                <td>Noturno</td>
+                <td>R$ 907,00</td>
+                <td>R$ 834,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Publicidade e Propaganda</td>
+                <td>8</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 907,00</td>
+                <td>R$ 834,00</td>
+                <td class="special-discount">-</td>
+              </tr>
+              <tr>
+                <td>Design de interiores</td>
+                <td>4</td>
+                <td>Tecnólogo</td>
+                <td>Noturno</td>
+                <td>R$ 837,00</td>
+                <td>R$ 778,00</td>
+                <td class="special-discount">50% R$ 419,00</td>
+              </tr>
+            </tbody>
           </table>
         </div>
 
-        
       </section>
 
-      <section class="crm-section">
+      <section class="crm-section tab-content" id="tabela-2026-content">
         <h2 class="section-title">
-          ⚠️ Informações Importantes
+          💸 Tabela Mensalidade (Ciclo 2026)
         </h2>
-        <div class="info-block">
-          <ul>
-            <li>
-              <span>✅</span> Os valores podem sofrer
-              alterações no início de cada ano em razão do índice IPCA (Entre 5%
-              e 8%)
-            </li>
-            <li>
-              <span>✅</span> Desconto de pontualidade
-              válido para pagamentos até o dia 10 de cada mês
-            </li>
-            <li>
-              <span>✅</span> Consulte sempre a planilha
-              atualizada antes de informar valores ao candidato
-            </li>
-          </ul>
+        <p class="section-description">
+          Valores do Ciclo 2026, usados para o cálculo das **Mensalidades** e DPs.
+        </p>
+        
+        <div class="table-responsive">
+          <table class="investment-table">
+            <thead>
+              <tr>
+                <th>CURSO</th>
+                <th>DURAÇÃO (semestres)</th>
+                <th>FORMAÇÃO</th>
+                <th>TURNO</th>
+                <th>INVESTIMENTO</th>
+                <th>PONTUALIDADE (até dia 10)</th>
+                <th>DESCONTO ESPECIAL</th>
+                <th>DP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Odontologia</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Integral</td>
+                <td>R$ 3.444,00</td>
+                <td>R$ 3.203,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 310,00</td>
+              </tr>
+              <tr>
+                <td>Medicina Veterinária</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Integral</td>
+                <td>R$ 2.486,00</td>
+                <td>R$ 2.312,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 224,00</td>
+              </tr>
+              <tr>
+                <td>Arquitetura</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.738,00</td>
+                <td>R$ 1.616,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 156,00</td>
+              </tr>
+              <tr>
+                <td>Biomedicina</td>
+                <td>8</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.738,00</td>
+                <td>R$ 1.616,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 156,00</td>
+              </tr>
+              <tr>
+                <td>Enfermagem</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.738,00</td>
+                <td>R$ 1.616,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 156,00</td>
+              </tr>
+              <tr>
+                <td>Farmácia</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.738,00</td>
+                <td>R$ 1.616,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 156,00</td>
+              </tr>
+              <tr>
+                <td>Fisioterapia</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.738,00</td>
+                <td>R$ 1.616,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 156,00</td>
+              </tr>
+              <tr>
+                <td>Engenharia Civil</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.738,00</td>
+                <td>R$ 1.616,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 156,00</td>
+              </tr>
+              <tr>
+                <td>Nutrição</td>
+                <td>8</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.738,00</td>
+                <td>R$ 1.616,00</td>
+                <td class="special-discount">50% R$ 869,00</td>
+                <td>R$ 156,00</td>
+              </tr>
+              <tr>
+                <td>Gastronomia</td>
+                <td>4</td>
+                <td>Tecnólogo</td>
+                <td>Noturno</td>
+                <td>R$ 1.738,00</td>
+                <td>R$ 1.616,00</td>
+                <td class="special-discount">40% 1.043,00</td>
+                <td>R$ 156,00</td>
+              </tr>
+              <tr>
+                <td>Agronomia</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.640,00</td>
+                <td>R$ 1.525,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 148,00</td>
+              </tr>
+              <tr>
+                <td>Psicologia</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno/Diurno</td>
+                <td>R$ 1.632,00</td>
+                <td>R$ 1.518,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 147,00</td>
+              </tr>
+              <tr>
+                <td>Direito</td>
+                <td>10</td>
+                <td>Bacharel</td>
+                <td>Noturno/Diurno</td>
+                <td>R$ 1.507,00</td>
+                <td>R$ 1.402,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 136,00</td>
+              </tr>
+              <tr>
+                <td>Engenharia de Software</td>
+                <td>8</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.374,00</td>
+                <td>R$ 1.278,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 124,00</td>
+              </tr>
+              <tr>
+                <td>Administração</td>
+                <td>8</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.182,00</td>
+                <td>R$ 1.099,00</td>
+                <td class="special-discount">30% R$ 827,00</td>
+                <td>R$ 106,00</td>
+              </tr>
+              <tr>
+                <td>Ciências Contábeis</td>
+                <td>8</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 1.182,00</td>
+                <td>R$ 1.099,00</td>
+                <td class="special-discount">30% R$ 827,00</td>
+                <td>R$ 106,00</td>
+              </tr>
+              <tr>
+                <td>Educação Física</td>
+                <td>8</td>
+                <td>Bacharel/ Licenciatura</td>
+                <td>Noturno</td>
+                <td>R$ 1.056,00</td>
+                <td>R$ 982,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 75,00</td>
+              </tr>
+              <tr>
+                <td>Radiologia</td>
+                <td>6</td>
+                <td>Tecnólogo</td>
+                <td>Noturno</td>
+                <td>R$ 952,00</td>
+                <td>R$ 885,00</td>
+                <td class="special-discount">50% R$ 476,00</td>
+                <td>R$ 86,00</td>
+              </tr>
+              <tr>
+                <td>Estética e Cosmética</td>
+                <td>4</td>
+                <td>Tecnólogo</td>
+                <td>Noturno</td>
+                <td>R$ 952,00</td>
+                <td>R$ 885,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 86,00</td>
+              </tr>
+              <tr>
+                <td>Produção Agrícola</td>
+                <td>6</td>
+                <td>Tecnólogo</td>
+                <td>Noturno</td>
+                <td>R$ 952,00</td>
+                <td>R$ 885,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 86,00</td>
+              </tr>
+              <tr>
+                <td>Publicidade e Propaganda</td>
+                <td>8</td>
+                <td>Bacharel</td>
+                <td>Noturno</td>
+                <td>R$ 952,00</td>
+                <td>R$ 885,00</td>
+                <td class="special-discount">-</td>
+                <td>R$ 86,00</td>
+              </tr>
+              <tr>
+                <td>Design de interiores</td>
+                <td>4</td>
+                <td>Tecnólogo</td>
+                <td>Noturno</td>
+                <td>R$ 837,00</td>
+                <td>R$ 778,00</td>
+                <td class="special-discount">50% R$ 419,00</td>
+                <td>R$ 75,00</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
+
     </main>
 
     <script src="script.js"></script>

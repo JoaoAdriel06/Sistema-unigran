@@ -40,31 +40,66 @@ document.addEventListener("DOMContentLoaded", () => {
             - "Deixa eu te explicar de um jeito simples."
             - "Vamos juntos que vai dar certo 💛"
         4. **Jargon:** Avoid technical/institutional jargon; prioritize clarity and emotional connection.
-
+        5. Format the response into subheadings with emojis to make it easier to understand and organize.
         **FINAL ESSENCE:** Your responses must embody the essence: "Acredito que cada conversa é uma oportunidade de ajudar alguém a dar o próximo passo — com leveza, verdade e propósito."
     `;
         
     // --- FUNÇÕES ESSENCIAIS DE CHAT ---
 
-    // Função de Animação de Texto (Simulação do Gemini/ChatGPT)
+    /**
+     * Converte texto Markdown simples (negrito, cabeçalhos, listas) para HTML.
+     */
+    function parseSimpleMarkdown(text) {
+        let html = text
+            // Remove espaços extras no início/fim
+            .trim()
+            // 1. Cabeçalhos (### Título)
+            .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+            // 2. Negrito (**Texto**)
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            // 3. Listas (* Item)
+            .replace(/^\* (.*$)/gm, '<li>$1</li>');
+
+        // 4. Agrupa <li>'s consecutivos em <ul>
+        // Usa marcadores temporários para evitar recursão
+        html = html.replace(/<li>/g, 'START_LI').replace(/<\/li>/g, 'END_LI');
+        // Agrupa blocos de listas
+        html = html.replace(/(START_LI.*END_LI\s*)+/g, (match) => {
+            return '<ul>' + match.replace(/START_LI/g, '<li>').replace(/END_LI/g, '</li>') + '</ul>';
+        });
+
+        // 5. Novas linhas (quebras de linha)
+        html = html.replace(/\n/g, '<br>');
+        
+        // 6. Limpeza (remove <br> que podem ter ficado presos na lógica da lista)
+        html = html.replace(/<ul><br>/g, '<ul>');
+        html = html.replace(/<br><\/ul>/g, '</ul>');
+        html = html.replace(/<\/li><br>/g, '</li>');
+        html = html.replace(/<br><li>/g, '<li>');
+        
+        return html;
+    }
+
+
+    /**
+     * Função de Animação de Texto (MODIFICADA)
+     * Agora não anima mais, apenas renderiza o HTML formatado.
+     */
     function typeResponse(text) {
-        let index = 0;
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message', 'uny-message');
         const bubbleDiv = document.createElement('div');
         bubbleDiv.classList.add('bubble');
+        
+        // --- MUDANÇA PRINCIPAL ---
+        // Em vez de animar char por char, 
+        // processa o Markdown e insere o HTML de uma vez.
+        bubbleDiv.innerHTML = parseSimpleMarkdown(text);
+        // --- FIM DA MUDANÇA ---
+        
         messageDiv.appendChild(bubbleDiv);
         chatBody.appendChild(messageDiv);
         chatBody.scrollTop = chatBody.scrollHeight;
-        
-        const animationInterval = setInterval(() => {
-            if (index < text.length) {
-                bubbleDiv.textContent += text.charAt(index);
-                index++;
-            } else {
-                clearInterval(animationInterval);
-            }
-        }, 20); 
     }
     
     function addMessage(sender, text, attachment) {
@@ -274,7 +309,7 @@ async function callAIAPI(currentQuery) {
             chatBody.removeChild(loadingMessageDiv);
         }
         
-        // Adiciona a resposta animada (typeResponse)
+        // Adiciona a resposta (agora formatada)
         addMessage('uny', aiResponseText); 
 
         // Se for o primeiro envio, atualiza o título da conversa no histórico lateral
@@ -322,12 +357,6 @@ async function callAIAPI(currentQuery) {
     }
     
     // --- 7. LISTENERS ---
-    // NOVO: Não há botão flutuante para toggle, apenas o close no chat
-    // O botão da navbar deve ser configurado na HOME para ir para esta página (index.html)
-
-    // LISTENERS DO CHAT (para quando a página é acessada)
-    // O botão de fechar não é mais necessário aqui, já que a Uni é uma página inteira.
-    // Usaremos um botão para a Home/Página anterior.
     
     sendButton.addEventListener('click', sendMessage);
     chatInput.addEventListener('keypress', (e) => {

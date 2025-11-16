@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("ramais-list-container");
   const searchInput = document.getElementById("ramal-search");
 
-  // 2. Função de Renderização dos Ramais
+  // 2. Função de Renderização dos Ramais (MODIFICADA PARA TABELA)
   function renderRamais(filteredData) {
     container.innerHTML = ""; // Limpa o conteúdo
     const dataToRender = filteredData || ramaisData; // Usa dados filtrados ou todos os dados
@@ -129,25 +129,39 @@ document.addEventListener("DOMContentLoaded", () => {
       title.textContent = dept.departamento;
       container.appendChild(title);
 
-      // Grid de Ramais
-      const grid = document.createElement("div");
-      grid.classList.add("ramal-grid");
+      // Nova Tabela
+      const table = document.createElement("table");
+      table.classList.add("ramal-table");
 
+      // Cabeçalho da Tabela
+      table.innerHTML = `
+          <thead>
+              <tr>
+                  <th>Setor/Cargo</th>
+                  <th>Nome</th>
+                  <th>Ramal</th>
+              </tr>
+          </thead>
+      `;
+
+      // Corpo da Tabela
+      const tbody = document.createElement("tbody");
       dept.items.forEach((item) => {
-        const card = document.createElement("div");
-        card.classList.add("ramal-card");
-        card.dataset.ramal = item.ramal;
+        const row = document.createElement("tr");
+        row.classList.add("ramal-row"); // Classe para o clique
+        row.dataset.ramal = item.ramal; // Pega o ramal para a cópia
 
-        card.innerHTML = `
-                <div class="ramal-card-role">${item.cargo}</div>
-                <div class="ramal-card-name">${item.nome}</div>
-                <div class="ramal-card-number">${item.ramal}</div>
-            `;
-        grid.appendChild(card);
+        row.innerHTML = `
+              <td>${item.cargo}</td>
+              <td>${item.nome}</td>
+              <td><strong>${item.ramal}</strong></td>
+          `;
+        tbody.appendChild(row);
         totalRamaisCount++;
       });
 
-      container.appendChild(grid);
+      table.appendChild(tbody);
+      container.appendChild(table);
     });
 
     // Se não houver ramais, mostra uma mensagem
@@ -196,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 4. Lógica de Cópia
-  function copyToClipboard(text, card) {
+  function copyToClipboard(text, rowElement) { // Renomeado de 'card' para 'rowElement'
     if (!navigator.clipboard) {
       alert("Recurso de cópia indisponível no seu navegador.");
       return;
@@ -206,10 +220,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .writeText(text)
       .then(() => {
         // Feedback visual (ramal fica verde por um momento)
-        card.classList.add("copied");
+        rowElement.classList.add("copied");
 
         setTimeout(() => {
-          card.classList.remove("copied");
+          rowElement.classList.remove("copied");
         }, 1500);
       })
       .catch((err) => {
@@ -221,13 +235,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // 5. Inicialização e Event Listeners
   renderRamais(ramaisData); // Renderiza todos os ramais ao iniciar
 
-  // Adiciona o ouvinte de clique para a cópia no clipboard
+  // Adiciona o ouvinte de clique para a cópia no clipboard (MODIFICADO)
   container.addEventListener("click", (event) => {
-    const card = event.target.closest(".ramal-card");
-    if (card) {
-      const ramal = card.dataset.ramal;
+    const row = event.target.closest(".ramal-row"); // MUDADO DE .ramal-card PARA .ramal-row
+    if (row) {
+      const ramal = row.dataset.ramal;
       if (ramal) {
-        copyToClipboard(ramal, card);
+        copyToClipboard(ramal, row); // Passa a LINHA (tr)
       }
     }
   });

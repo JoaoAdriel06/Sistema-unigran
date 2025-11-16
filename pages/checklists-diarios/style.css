@@ -96,10 +96,14 @@ h1 {
     margin-bottom: 0.5rem;
 }
 
-.group-description {
+/* Ajuste do grupo-description para explicar o novo botão */
+.checklist-group .group-description {
     color: var(--text-color-secondary);
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .tip {
@@ -179,6 +183,45 @@ h1 {
     color: var(--text-color-secondary);
     text-decoration: line-through;
 }
+
+/* --- ESTILOS NOVOS PARA O BOTÃO DE LINK --- */
+
+.checklist .link-button {
+    background-color: var(--primary-color); /* Amarelo UNIGRAN */
+    color: var(--background-color); /* Fundo escuro */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 1rem; /* Espaço entre o label e o botão */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o ícone */
+    gap: 5px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    flex-shrink: 0;
+    line-height: 1; /* Alinhamento visual */
+}
+
+/* Estilo do ícone */
+.checklist .link-button i {
+    font-size: 0.9rem;
+}
+
+/* Efeito Hover */
+.checklist .link-button:hover {
+    background-color: #d99a45; /* Um amarelo mais escuro */
+    transform: translateY(-1px);
+}
+
+/* Efeito Click */
+.checklist .link-button:active {
+    transform: scale(0.98);
+}
+
+/* --- FIM DOS ESTILOS NOVOS --- */
 
 /* --- Citação (Bloco 3) --- */
 .quote {

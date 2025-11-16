@@ -182,10 +182,11 @@ body::before {
 .main-content {
     padding-top: 70px; 
     flex: 1;
-    max-width: 1200px; /* Alinhado com o max-width da maioria das páginas */
+    /* ### ALTERAÇÃO DE LAYOUT ### */
+    max-width: none; /* Remove o limite de largura */
     margin: 0 auto;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: 1rem;  /* Reduz o padding lateral */
+    padding-right: 1rem; /* Reduz o padding lateral */
     padding-bottom: 48px;
 }
 
@@ -214,6 +215,12 @@ body::before {
 /* Estilos de Seção Comuns */
 .crm-section {
     margin-bottom: 3rem;
+    /* ### NOVO PADRÃO DE SEÇÃO ### */
+    /* Este estilo de card/bloco será usado para as seções */
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color-subtle);
 }
 
 .section-title {
@@ -231,8 +238,9 @@ body::before {
 /* Home Page Specific Styles (Mantidos para não quebrar a home) */
 .welcome-section {
     text-align: center;
-    padding-top: 150px; 
-    padding-bottom: 150px;
+    padding-top: 20px; 
+    padding-bottom: 20px;
+    /* A home page não usa o fundo .crm-section */
 }
 .welcome-section h1 {
     font-size: 72px; 
@@ -251,4 +259,59 @@ body::before {
     line-height: 1.6;
     max-width: 700px;
     margin: 0 auto;
+}
+
+/* --- Estilo Global de Cards de Link (NOVO) --- */
+/* Este é o estilo de card consistente que você pediu */
+.global-card-grid {
+    display: grid;
+    /* Ajustado para 4 colunas em telas largas, caindo para menos */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.global-link-card {
+    text-decoration: none;
+    background-color: var(--background-color); /* Fundo mais escuro, para destacar do card-background */
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color-subtle);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, border-color 0.2s;
+    min-height: 220px; /* Altura consistente */
+}
+
+.global-link-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-color);
+}
+
+.global-link-card .card-icon {
+    font-size: 2.5rem; /* Emoji */
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.global-link-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.global-link-card p {
+    font-size: 0.9rem;
+    color: var(--text-color-secondary);
+    line-height: 1.5;
+    flex-grow: 1; /* Empurra o footer para baixo */
+}
+
+.global-link-card .card-link-footer {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
 }

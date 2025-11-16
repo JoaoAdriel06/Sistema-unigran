@@ -161,8 +161,8 @@ body::before {
     border-color: var(--color-success);
 }
 
-/* --- Estilo para o Select (SEM Borda Gradiente) --- */
-.channel-select {
+/* --- Estilo para o Select (MODIFICADO) --- */
+.crm-select {
     border: 1px solid var(--primary-color); /* Borda amarela sólida */
     border-radius: 6px;
     background-color: var(--item-bg); /* Fundo escuro */
@@ -182,6 +182,20 @@ body::before {
     background-position: right 0.5rem center;
     background-size: 1em;
     padding-right: 2rem;
+}
+
+/* --- NOVO Estilo para o Input Date --- */
+.crm-date {
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    background-color: var(--item-bg);
+    color: var(--text-color-primary);
+    padding: 0.4rem 0.8rem; /* Ajuste fino de padding */
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+    color-scheme: dark; /* Faz o calendário pop-up usar o tema escuro */
 }
 
 /* --- Responsividade --- */

@@ -1,0 +1,17 @@
+#emoji pra copiar
+
+
+#
+Campo pra data
+
+#
+Select
+forma de ingressos
+enem
+vestibular
+tranferência externa
+portador de diploma
+
+
+notas de acompanhamento
+tirar o no valor

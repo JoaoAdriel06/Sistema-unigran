@@ -70,6 +70,8 @@ body::before {
     height: 100vh;
     width: 100%;
     background-color: transparent; 
+    /* CORREÇÃO: Remove o padding-bottom herdado do .main-content */
+    padding-bottom: 0;
 }
 
 /* Header antigo removido */
@@ -82,7 +84,7 @@ body::before {
     flex-grow: 1;
     overflow-y: auto;
     padding: 20px 20px 40px 20px;
-    max-width: 900px; /* Limita a largura da conversa */
+    max-width: 1200px; /* Limita a largura da conversa */
     width: 100%;
     margin: 0 auto;
 
@@ -237,4 +239,30 @@ body::before {
     .input-container-full {
         padding: 5px;
     }
+}
+
+/* --- NOVOS ESTILOS PARA CONTEÚDO MD DENTRO DO BALÃO --- */
+.bubble h3 {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0.5rem 0 0.75rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.bubble ul {
+    padding-left: 20px; /* Recuo da lista */
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.bubble li {
+    margin-bottom: 0.25rem;
+    line-height: 1.5;
+}
+
+.bubble strong {
+    color: var(--text-color-primary); /* Torna o negrito mais branco */
+    font-weight: 600;
 }
