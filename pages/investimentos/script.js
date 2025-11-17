@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- DADOS PARA OS CARDS DE DESCONTO (Fonte: Seu texto digitado) ---
+  
+  // =========================================================
+  // 1. LÓGICA DA ABA "DESCONTOS E REGRAS" (CARDS)
+  // =========================================================
+  
   const descontosData = [
     {
       id: "convenios",
@@ -113,23 +117,22 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       id: "fixos",
-      title: "9️⃣ Cursos com Descontos Fixos",
+      title: "9️⃣ Descontos especiais",
       content: `
-        ⭐ <strong>Cursos com 50% na matrícula e mensalidade:</strong><br>
-        – Design<br>
-        – Radiologia<br>
-        <br>
+
         ✨ <strong>Cursos com até 50% na matrícula:</strong><br>
         – Educação Física<br>
         – Arquitetura<br>
         – Fisioterapia<br>
         – Produção Agrícola<br>
         <br>
-        🎯 <strong>Cursos com desconto institucional fixo (curso todo):</strong><br>
+        🎯 <strong>Cursos com desconto fixo (curso todo):</strong><br>
         – Nutrição → <strong>50%</strong><br>
         – Gastronomia → <strong>40%</strong><br>
         – Administração → <strong>30%</strong><br>
-        – Ciências Contábeis → <strong>30%</strong>
+        – Ciências Contábeis → <strong>30%</strong><br>
+        – Design de Interiores → <strong>50%</strong><br>
+        – Radiologia → <strong>50%</strong>
       `,
       searchTerms: "fixo 50% 40% 30% design radiologia nutrição gastronomia administração ciências contábeis",
     },
@@ -144,16 +147,16 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  // --- 1. LÓGICA DOS CARDS PESQUISÁVEIS ---
+  // Elementos da Busca de Cards
   const cardContainer = document.getElementById("discount-card-container");
-  const searchInput = document.getElementById("discount-search");
+  const searchInputCards = document.getElementById("discount-search");
   const noResultsMessage = document.getElementById("no-results-message");
 
   /**
    * Renderiza os cards de desconto
    */
   function renderCards(data) {
-    if (!cardContainer) return; // Se a aba não estiver carregada, não faz nada
+    if (!cardContainer) return; 
     
     cardContainer.innerHTML = "";
     if (data.length === 0 && noResultsMessage) {
@@ -167,7 +170,6 @@ document.addEventListener("DOMContentLoaded", () => {
       card.classList.add("discount-card");
       card.dataset.searchTerms = item.searchTerms;
 
-      // --- HTML NOVO (Estilo "Formas de Ingresso") ---
       card.innerHTML = `
         <h3>${item.title}</h3>
         <div class="discount-card-content">
@@ -182,22 +184,62 @@ document.addEventListener("DOMContentLoaded", () => {
    * Filtra os cards com base no input de busca
    */
   function filterCards() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
+    const searchTerm = searchInputCards.value.toLowerCase().trim();
     
     if (!searchTerm) {
-        renderCards(descontosData); // Mostra todos se a busca estiver vazia
+        renderCards(descontosData); 
         return;
     }
 
     const filteredData = descontosData.filter(item => 
-        item.title.toLowerCase().includes(searchTerm) || // Adiciona busca pelo título
+        item.title.toLowerCase().includes(searchTerm) || 
         item.searchTerms.toLowerCase().includes(searchTerm)
     );
     
     renderCards(filteredData);
   }
 
-  // --- 2. LÓGICA DA NAVEGAÇÃO POR ABAS ---
+
+  // =========================================================
+  // 2. LÓGICA DAS ABAS "TABELAS" (NOVO)
+  // =========================================================
+
+  /**
+   * Função Genérica para Filtrar Tabelas
+   * @param {string} inputId - O ID do input de busca (ex: 'matricula-search')
+   * @param {string} sectionId - O ID da seção que contém a tabela (ex: 'tabela-2025-content')
+   */
+  function setupTableSearch(inputId, sectionId) {
+    const inputElement = document.getElementById(inputId);
+    const sectionElement = document.getElementById(sectionId);
+
+    // Proteção: se não achar o input ou a tabela, não faz nada (evita erros)
+    if (!inputElement || !sectionElement) return;
+
+    // Encontra as linhas (tr) dentro do corpo da tabela (tbody) nessa seção
+    const tableRows = sectionElement.querySelectorAll("tbody tr");
+
+    // Adiciona o evento de digitação
+    inputElement.addEventListener("keyup", () => {
+        const term = inputElement.value.toLowerCase().trim();
+
+        tableRows.forEach(row => {
+            // Pega todo o texto da linha (Curso, Valor, Desconto...)
+            const rowText = row.textContent.toLowerCase();
+
+            // Se o termo estiver no texto, mostra a linha. Se não, esconde.
+            if (rowText.includes(term)) {
+                row.style.display = ""; // Mostra (padrão do navegador)
+            } else {
+                row.style.display = "none"; // Esconde
+            }
+        });
+    });
+  }
+
+  // =========================================================
+  // 3. LÓGICA DE NAVEGAÇÃO POR ABAS (MANTIDO)
+  // =========================================================
   const tabLinks = document.querySelectorAll(".tab-link");
   const tabContents = document.querySelectorAll(".tab-content");
 
@@ -219,10 +261,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // --- 3. INICIALIZAÇÃO ---
-  // Verifica se os elementos existem antes de adicionar listeners
-  if (cardContainer && searchInput && noResultsMessage) {
-    renderCards(descontosData); // Renderiza os cards de desconto na inicialização
-    searchInput.addEventListener("keyup", filterCards); // Adiciona o listener da busca
+  // =========================================================
+  // 4. INICIALIZAÇÃO
+  // =========================================================
+  
+  // Inicializa Busca de Cards (Aba 1)
+  if (cardContainer && searchInputCards) {
+    renderCards(descontosData); 
+    searchInputCards.addEventListener("keyup", filterCards);
   }
+
+  // Inicializa Busca de Tabelas (Aba 2 e 3) - AQUI ESTÁ A MÁGICA NOVA
+  setupTableSearch("matricula-search", "tabela-2025-content");
+  setupTableSearch("mensalidade-search", "tabela-2026-content");
 });

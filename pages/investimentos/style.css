@@ -59,6 +59,7 @@
     display: none; 
     opacity: 0;
     transition: opacity 0.5s ease;
+    gap: 10px;
 }
 .tab-content.active {
     display: block; 
@@ -71,26 +72,32 @@
   margin-bottom: 1.5rem;
 }
 
-#discount-search {
+/* --- Barra de Busca (Atualizado para as 3 abas) --- */
+.search-bar-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+/* AQUI É A MUDANÇA: Adicionamos os IDs das novas barras separados por vírgula */
+#discount-search,
+#matricula-search,
+#mensalidade-search {
   width: 100%;
   padding: 0.8rem 1rem;
   border-radius: 6px;
   border: 1px solid var(--border-color-subtle);
-  background-color: var(--item-background);
-  color: var(--text-color-primary);
+  background-color: var(--item-background); /* Fundo escuro */
+  color: var(--text-color-primary);        /* Letra clara */
   font-size: 1rem;
   outline: none;
-}
-#discount-search:focus {
-    border-color: var(--primary-color);
+  transition: border-color 0.3s ease;
 }
 
-/* --- NOVO ESTILO: Grid de Cards de Desconto (Estilo Formas de Ingresso) --- */
-.discount-card-grid {
-    display: grid;
-    /* 4 colunas em telas largas, caindo para menos */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 1.5rem;
+/* Efeito quando clica na barra (borda amarela) */
+#discount-search:focus,
+#matricula-search:focus,
+#mensalidade-search:focus {
+    border-color: var(--primary-color);
 }
 
 .discount-card {
@@ -100,6 +107,7 @@
     border: 1px solid var(--border-color-subtle);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
+    margin-bottom:10px;
     flex-direction: column;
 }
 
