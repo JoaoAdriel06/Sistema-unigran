@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investimentos EAD</title>
+    
+    <link rel="stylesheet" href="../../global-playbook.css">
+    <link rel="stylesheet" href="../investimentos/style.css">
+
+    <style>
+        /* Ajustes para ficar perfeito dentro do iframe */
+        body {
+            background-color: transparent; /* Fundo transparente */
+            padding: 0.5rem;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            /* Garante que a rolagem exista se necessário, mas controlada */
+            overflow-y: auto; 
+            overflow-x: hidden;
+        }
+        
+        /* --- Scrollbar Personalizada (Para sumir com a barra branca) --- */
+        ::-webkit-scrollbar {
+            width: 8px; /* Largura fina */
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; /* Fundo invisível */
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #495057; /* Cor cinza escuro (igual ao sistema) */
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #f0ad4e; /* Fica amarelo ao passar o mouse */
+        }
+        /* ---------------------------------------------------------- */
+
+        /* Títulos das seções internas */
+        .sub-header {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #444;
+            text-transform: uppercase;
+        }
+        .first { margin-top: 0; }
+
+        /* Ajuste da barra de busca interna */
+        .internal-search {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color-subtle);
+            background-color: var(--card-background);
+            color: var(--text-color-primary);
+            font-size: 1rem;
+            outline: none;
+            margin-bottom: 1.5rem;
+        }
+        .internal-search:focus {
+            border-color: var(--primary-color);
+        }
+        
+        /* Remove borda extra da tabela container */
+        .table-responsive {
+            border: 1px solid var(--border-color-subtle);
+            border-radius: 8px;
+            background: var(--item-background);
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="search-input" class="internal-search" placeholder="Buscar curso (ex: Administração, Agronomia...)" />
+
+    <div id="tables-container">
+        
+        <div class="sub-header first">🎓 Cursos EAD</div>
+        <div class="table-responsive">
+            <table class="investment-table">
+                <thead>
+                    <tr>
+                        <th>CURSO</th>
+                        <th>INVESTIMENTO</th>
+                        <th>PONTUALIDADE (Até dia 10)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>ADMINISTRAÇÃO</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>CIÊNCIAS CONTÁBEIS</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>CIÊNCIAS ECONÓMICAS</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>DESIGN DE INTERIORES</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>GESTÃO COMERCIAL</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>SEGURANÇA PÚBLICA</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM AGRONEGÓCIOS</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM ANÁLISE E DESENV. DE SISTEMAS</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM COMÉRCIO EXTERIOR</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM GASTRONOMIA</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM GESTÃO DA QUALIDADE</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM GESTÃO DE INTELIGÊNCIA ARTIFICIAL</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM GESTÃO DE MARKETING</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM GESTÃO DE RECURSOS HUMANOS</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM GESTÃO DE SERV. JUDICIAIS E NOTARIAIS</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM GESTÃO FINANCEIRA</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM GESTÃO PÚBLICA</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM INTELIGÊNCIA ARTIFICIAL</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM LOGÍSTICA</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM MÍDIAS SOCIAIS DIGITAIS</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. GESTÃO DE COOPERATIVAS</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEOLOGIA</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM NEGÓCIOS IMOBILIÁRIOS</td><td>R$ 341,50</td><td class="special-discount">R$ 225,00</td></tr>
+                    <tr><td>PROCESSOS GERENCIAIS</td><td>R$ 341,50</td><td class="special-discount">R$ 199,00</td></tr>
+                    <tr><td>TEC. EM PRODUÇÃO PUBLICITÁRIA</td><td>R$ 341,50</td><td class="special-discount">R$ 199,00</td></tr>
+                    <tr><td>ENGENHARIA DE SOFTWARE</td><td>R$ 390,50</td><td class="special-discount">R$ 320,00</td></tr>
+                    <tr><td>BACHARELADO EM GEOGRAFIA</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>BACHARELADO EM HISTÓRIA</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>BACHARELADO EM LETRAS</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM BANCO DE DADOS</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM GESTÃO DA PRODUÇÃO INDUSTRIAL</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM SEGURANÇA CIBERNÉTICA</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM SEGURANÇA DO TRABALHO</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                    <tr><td>TEC. EM SEGURANÇA PRIVADA</td><td>R$ 341,50</td><td class="special-discount">R$ 275,50</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="sub-header">🏫 Cursos Semipresenciais</div>
+        <div class="table-responsive">
+            <table class="investment-table">
+                <thead>
+                    <tr>
+                        <th>CURSO</th>
+                        <th>INVESTIMENTO</th>
+                        <th>PONTUALIDADE (Até dia 10)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>CIÊNCIAS BIOLÓGICAS (Bacharelado/Licenciatura)</td><td>R$ 399,00</td><td class="special-discount">R$ 325,00</td></tr>
+                    <tr><td>GEOGRAFIA</td><td>R$ 399,00</td><td class="special-discount">R$ 325,00</td></tr>
+                    <tr><td>HISTÓRIA</td><td>R$ 399,00</td><td class="special-discount">R$ 325,00</td></tr>
+                    <tr><td>LETRAS</td><td>R$ 399,00</td><td class="special-discount">R$ 325,00</td></tr>
+                    <tr><td>MATEMÁTICA (Bacharelado/Licenciatura)</td><td>R$ 399,00</td><td class="special-discount">R$ 325,00</td></tr>
+                    <tr><td>PEDAGOGIA</td><td>R$ 399,00</td><td class="special-discount">R$ 325,00</td></tr>
+                    <tr><td>SERVIÇO SOCIAL</td><td>R$ 399,00</td><td class="special-discount">R$ 325,00</td></tr>
+                    <tr><td>EDUCAÇÃO FÍSICA (Bacharelado/Licenciatura)</td><td>R$ 525,00</td><td class="special-discount">R$ 420,00</td></tr>
+                    <tr><td>TEC. EM ESTÉTICA E COSMÉTICA</td><td>R$ 525,00</td><td class="special-discount">R$ 420,00</td></tr>
+                    <tr><td>ENGENHARIA AMBIENTAL</td><td>R$ 700,00</td><td class="special-discount">R$ 560,00</td></tr>
+                    <tr><td>ENGENHARIA DE PRODUÇÃO</td><td>R$ 700,00</td><td class="special-discount">R$ 560,00</td></tr>
+                    <tr><td>ENGENHARIA MECÂNICA</td><td>R$ 700,00</td><td class="special-discount">R$ 560,00</td></tr>
+                    <tr><td>TEC. EM GESTÃO AMBIENTAL</td><td>R$ 700,00</td><td class="special-discount">R$ 560,00</td></tr>
+                    <tr><td>AGRONOMIA</td><td>R$ 787,50</td><td class="special-discount">R$ 630,00</td></tr>
+                    <tr><td>BACHARELADO EM FONOAUDIOLOGIA</td><td>R$ 787,50</td><td class="special-discount">R$ 630,00</td></tr>
+                    <tr><td>BACHARELADO EM TERAPIA OCUPACIONAL</td><td>R$ 787,50</td><td class="special-discount">R$ 630,00</td></tr>
+                    <tr><td>FARMÁCIA</td><td>R$ 787,50</td><td class="special-discount">R$ 630,00</td></tr>
+                    <tr><td>FISIOTERAPIA</td><td>R$ 787,50</td><td class="special-discount">R$ 630,00</td></tr>
+                    <tr><td>NUTRIÇÃO</td><td>R$ 787,50</td><td class="special-discount">R$ 630,00</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="sub-header">🔄 Cursos Híbridos</div>
+        <div class="table-responsive">
+            <table class="investment-table">
+                <thead>
+                    <tr>
+                        <th>CURSO</th>
+                        <th>INVESTIMENTO</th>
+                        <th>PONTUALIDADE (Até dia 10)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>ADMINISTRAÇÃO</td><td>R$ 390,50</td><td class="special-discount">R$ 320,01</td></tr>
+                    <tr><td>CIÊNCIAS CONTÁBEIS</td><td>R$ 390,50</td><td class="special-discount">R$ 320,01</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const rows = document.querySelectorAll('tbody tr');
+
+        searchInput.addEventListener('keyup', (e) => {
+            const term = e.target.value.toLowerCase();
+            
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(term) ? '' : 'none';
+            });
+        });
+    </script>
+
+</body>
+</html>

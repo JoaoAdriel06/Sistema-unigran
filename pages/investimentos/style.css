@@ -194,3 +194,30 @@
         grid-template-columns: 1fr; /* Coluna única no mobile */
     }
 }
+/* --- Estilo do Visualizador de PDF (Adicionar ao final do CSS) --- */
+.pdf-viewer-container {
+    width: 100%;
+    height: 800px; /* Altura grande para ver bem a tabela */
+    background-color: var(--item-background);
+    border-radius: 8px;
+    border: 1px solid var(--border-color-subtle);
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.pdf-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.viewer-alert {
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-color-secondary);
+    font-size: 0.9rem;
+    background-color: #3a3a3a;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    border: 1px solid var(--border-color-subtle);
+}
